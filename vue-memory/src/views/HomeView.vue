@@ -4,6 +4,8 @@ import { ref } from 'vue'
 
 const router = useRouter()
 const name = ref('')
+const theme = ref('')
+const mode = ref('')
 
 function pushTo(route) { 
   if(validateName()){

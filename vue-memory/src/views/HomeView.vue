@@ -1,5 +1,23 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
+
+const router = useRouter()
+const name = ref('')
+
+function pushTo(name) { 
+  if(validateName()){
+    router.push({ path: name })
+  }else{
+    name.value = 'Entrée invalide'
+  }
+  
+}
+
+function validateName(){
+  const regex = /^[a-zA-Z][a-zA-Z-_ \.]{3,}$/
+  return regex.test(name.value)
+}
 </script>
 
 <template>
@@ -21,10 +39,10 @@ import { RouterLink } from 'vue-router'
     </div>
     <div>
       <label for="name">Saisissez votre prénom et votre nom :</label>
-      <input type="text" id="name" required>
+      <input type="text" id="name" required v-model="name">
     </div>
     <div class="validation">
-      <button type="button" disabled>Démarrer</button>
+        <button @click="pushTo('/memory')" type="button">Démarrer</button>
     </div>
   </form>
 </template>

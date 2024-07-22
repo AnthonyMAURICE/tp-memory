@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 const router = useRouter()
@@ -7,17 +7,20 @@ const name = ref('')
 
 function pushTo(route) { 
   if(validateName()){
-    const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
-    sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
+    saveInSessionStorage()
     router.push({ path: route })
   }else{
     name.value = 'Entrée invalide'
   }
-  
+}
+
+function saveInSessionStorage(){
+  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
+  sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
 }
 
 function validateName(){
-  const regex = /^[a-zA-Z][a-zA-Z-_ \.]{3,}$/
+  const regex = /^[a-zA-Z-_ \.]{3,}$/
   return regex.test(name.value)
 }
 </script>
@@ -51,7 +54,7 @@ function validateName(){
 
 <style scoped>
   form{
-    width: 40%;
+    width: 50%;
     margin: 15px;
     font-size: 2rem;
   }

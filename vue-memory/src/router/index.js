@@ -8,6 +8,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/memory',
+      name: 'memory',
+      component: () => import('../views/GameView.vue')
     }
   ]
 })

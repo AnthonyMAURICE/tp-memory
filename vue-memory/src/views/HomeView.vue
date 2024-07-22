@@ -1,12 +1,35 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+
+const router = useRouter()
+const name = ref('')
+
+function pushTo(route) { 
+  if(validateName()){
+    saveInSessionStorage()
+    router.push({ path: route })
+  }else{
+    name.value = 'Entrée invalide'
+  }
+}
+
+function saveInSessionStorage(){
+  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
+  sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
+}
+
+function validateName(){
+  const regex = /^[a-zA-Z-_ \.]{3,}$/
+  return regex.test(name.value)
+}
 </script>
 
 <template>
   <form>
     <div>
       <label for="theme">Sélectionner le thème à utiliser :</label>
-      <select name="theme" id="theme">
+      <select name="theme" id="theme" v-model="theme">
         <option value="colors">Couleurs</option>
         <option value="abstract">Formes abstraites</option>
         <option value="cards">Cartes à jouer</option>
@@ -14,24 +37,24 @@ import { RouterLink } from 'vue-router'
     </div>
     <div>
       <label for="mode">Sélectionner la variante :</label>
-      <select name="mode" id="mode">
+      <select name="mode" id="mode" v-model="mode">
         <option value="memory">Test de mémoire</option>
         <option value="relearning">Réapprentissage</option>
       </select>
     </div>
     <div>
       <label for="name">Saisissez votre prénom et votre nom :</label>
-      <input type="text" id="name" required>
+      <input type="text" id="name" required v-model="name">
     </div>
     <div class="validation">
-      <button type="button" disabled>Démarrer</button>
+        <button @click="pushTo('/memory')" type="button">Démarrer</button>
     </div>
   </form>
 </template>
 
 <style scoped>
   form{
-    width: 40%;
+    width: 50%;
     margin: 15px;
     font-size: 2rem;
   }

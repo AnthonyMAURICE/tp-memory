@@ -5,9 +5,11 @@ import { ref } from 'vue'
 const router = useRouter()
 const name = ref('')
 
-function pushTo(name) { 
+function pushTo(route) { 
   if(validateName()){
-    router.push({ path: name })
+    const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
+    sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
+    router.push({ path: route })
   }else{
     name.value = 'Entrée invalide'
   }
@@ -24,7 +26,7 @@ function validateName(){
   <form>
     <div>
       <label for="theme">Sélectionner le thème à utiliser :</label>
-      <select name="theme" id="theme">
+      <select name="theme" id="theme" v-model="theme">
         <option value="colors">Couleurs</option>
         <option value="abstract">Formes abstraites</option>
         <option value="cards">Cartes à jouer</option>
@@ -32,7 +34,7 @@ function validateName(){
     </div>
     <div>
       <label for="mode">Sélectionner la variante :</label>
-      <select name="mode" id="mode">
+      <select name="mode" id="mode" v-model="mode">
         <option value="memory">Test de mémoire</option>
         <option value="relearning">Réapprentissage</option>
       </select>

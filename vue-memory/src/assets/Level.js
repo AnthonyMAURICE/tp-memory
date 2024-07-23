@@ -19,7 +19,7 @@ class Level{
         this.bestPossibleScore = this.cards.length
     }
 
-    clickedImg(_event){
+    clickedImg(_event){ //reste à isoler la carte sélectionnée
         this.playDeck.forEach(elem => {
             elem.isVisible = _event.target.dataset.id == elem.id ? true : false
         })

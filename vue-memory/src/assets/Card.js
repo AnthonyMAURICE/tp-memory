@@ -1,13 +1,13 @@
 class Card{
-    constructor(_id, _src){
+    constructor(_id, _name){
         this.id = _id
-        this.src = _src
+        this.name = _name
         this.clickCounter = 0
         this.isVisible = false
     }
 
     clickOnCard(){
-        console.log(this)
+        this.clickCounter++
     }
 }
 

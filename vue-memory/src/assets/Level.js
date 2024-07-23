@@ -7,6 +7,8 @@ class Level{
         this.score = 0
         this.successRate = 0
         this.cards = []
+        this.secondDeck = []
+        this.levelCleared = false
     }
 
     calcSuccessRate(){
@@ -16,12 +18,6 @@ class Level{
     calcBestPossibleScore(){
         this.bestPossibleScore = this.cards.length
     }
-
-    generateNewLevel(){
-        // this.cards = result
-        console.log(this.cards)
-    }
-    
 
 }
 

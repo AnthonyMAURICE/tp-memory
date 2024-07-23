@@ -1,6 +1,6 @@
-import MemoryLevel from "./MemoryLevel"
-import RelearningLevel from "./RelearningLevel"
-import { level } from '../assets/store.js'
+import MemoryLevel from "./MemoryLevel.js"
+import RelearningLevel from "./RelearningLevel.js"
+import { game } from '../assets/store.js'
 
 class Game{
     constructor(_chosenTheme, _chosenMode, _playerName){
@@ -17,7 +17,10 @@ class Game{
     launchGame(){
         if(!this.isFinished){
             this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)
-            level.value = this.level
+            this.level.currentLevel++
+            game.value.level = this.level
+            this.level.constructBaseDecks()
+            console.log(this)
         }else{ 
             console.log('Terminé')
         }

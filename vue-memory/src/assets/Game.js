@@ -19,8 +19,7 @@ class Game{
             this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)
             this.level.currentLevel++
             game.value.level = this.level
-            this.level.constructBaseDecks()
-            console.log(this)
+            this.level.constructBaseDeck()
         }else{ 
             console.log('Terminé')
         }

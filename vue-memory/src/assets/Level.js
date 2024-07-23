@@ -7,7 +7,7 @@ class Level{
         this.score = 0
         this.successRate = 0
         this.cards = []
-        this.secondDeck = []
+        this.playDeck = []
         this.levelCleared = false
     }
 
@@ -19,6 +19,12 @@ class Level{
         this.bestPossibleScore = this.cards.length
     }
 
+    clickedImg(_event){
+        this.playDeck.forEach(elem => {
+            elem.isVisible = _event.target.dataset.id == elem.id ? true : false
+        })
+        console.log(_event.target.dataset.id)
+    }
 }
 
 export default Level

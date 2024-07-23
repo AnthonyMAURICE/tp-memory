@@ -10,7 +10,7 @@ class MemoryLevel extends Level{
         this.timeOutNewLevel = 0
         this.timeInterval = null
         this.maxLevel = 6
-        this.playDeck = []
+        this.maxDeckSize = 12
     }
 
     calcTimeoutNewLevel(){
@@ -21,13 +21,21 @@ class MemoryLevel extends Level{
         return this.cards
     }
 
-    constructBaseDecks(){
+    constructBaseDeck(){
         result.forEach(element => {
             let card = new Card(element.id, element.name)
             this.cards.push(card)
         });
         this.shuffleArray(this.cards)
-        this.secondDeck = this.cards
+        this.constructPlayDeck()
+        this.playDeck = this.playDeck.concat(this.playDeck)
+        this.shuffleArray(this.playDeck)
+    }
+
+    constructPlayDeck(){
+        for(let i = 0; i < this.maxDeckSize; i++){
+            this.playDeck.push(this.cards[i])
+        }
     }
 
     shuffleArray(array) {

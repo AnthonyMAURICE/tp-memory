@@ -1,5 +1,16 @@
 <script setup>
+import { ref } from 'vue';
 import { game } from '../assets/store.js'
+
+
+const timerStart = ref(game.value.level.calcTimeoutNewLevel())
+let interval = null
+if(game.value.level.checkIfLevelCleared()){
+    interval = setInterval(timerStart.value -= 0.1, 100)
+}else{
+    clearInterval(interval)
+}
+
 
 </script>
 
@@ -13,6 +24,7 @@ import { game } from '../assets/store.js'
     </section>
     <section v-else>
         <p>Tours de jeu : {{ game.value.level.turnCounter }} | Meilleur score possible : {{ game.value.level.calcBestPossibleScore() }} | Score de ce niveau : {{ game.value.level.score }}</p>
+        <p>{{ timerStart }}</p>
     </section>
 </template>
 

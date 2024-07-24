@@ -64,6 +64,12 @@ class Level{
             // si paire il y a, le score est incrémenté
             this.score++
         }
+        this.levelCleared = this.checkIfLevelCleared()
+    }
+
+    checkIfLevelCleared(){
+        let test = this.score == this.playDeck.length/2
+        return test
     }
 
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire

@@ -1,15 +1,18 @@
 <script setup>
 import { game } from '../assets/store.js'
-    
+
 </script>
 
 
 <template>
-    <section>
+    <section v-if="!game.value.level.levelCleared">
         <div v-for="elem in game.value.level.playDeck">
             <img :data-id="elem.id" v-if="elem.isVisible" :src="`../src/assets/theme/${game.value.theme}/${elem.name}`">
             <div :data-id="elem.id" class="card-invisible" @click="game.value.level.clickedImg" v-else>Carte</div> 
         </div>
+    </section>
+    <section v-else>
+        <p>Tours de jeu : {{ game.value.level.turnCounter }} | Meilleur score possible : {{ game.value.level.calcBestPossibleScore() }} | Score de ce niveau : {{ game.value.level.score }}</p>
     </section>
 </template>
 

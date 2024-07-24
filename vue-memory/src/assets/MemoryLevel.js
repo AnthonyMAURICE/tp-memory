@@ -5,14 +5,14 @@ import Card from "./Card.js"
 class MemoryLevel extends Level{
     constructor(_theme){
         super()
-        this.timeOutNewLevel = 0
+        this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null
         this.maxLevel = 6
         this.maxDeckSize = 12
     }
 
     calcTimeoutNewLevel(){
-        this.timeOutNewLevel = this.currentLevel == 6 ? 1000 * 60 * 20 : 20000
+        return this.currentLevel == 6 ? 1000 * 60 * 20 : 20000
     }
 
     // fonction de construction des decks de jeu

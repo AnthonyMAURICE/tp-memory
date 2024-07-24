@@ -12,7 +12,7 @@ class MemoryLevel extends Level{
     }
 
     calcTimeoutNewLevel(){
-        return this.currentLevel == 6 ? 1000 * 60 * 20 : 20000
+        return this.currentLevel == 6 ? 1000 * 60 * 20 : 2000
     }
 
     // fonction de construction des decks de jeu
@@ -54,6 +54,18 @@ class MemoryLevel extends Level{
             let temp = array[i];
             array[i] = array[j];
             array[j] = temp;
+        }
+    }
+
+    relaunch(){
+        if(this.checkIfLevelCleared()){
+            setTimeout(() =>{
+                this.playDeck.forEach((elem) => elem.isVisible = false)
+                this.currentLevel++
+                this.score = 0
+                this.levelCleared = false
+            }, this.calcTimeoutNewLevel())
+            
         }
     }
 }

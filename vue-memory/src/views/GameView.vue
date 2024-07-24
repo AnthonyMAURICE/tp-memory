@@ -6,13 +6,11 @@ import Game from '@/assets/Game.js';
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
 const currentGame = new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName)
-const levelFinished = ref(game.value.level.levelCleared)
 
 onBeforeMount(() => {
     game.value = currentGame
     currentGame.launchGame()
 })
-
 </script>
 
 
@@ -20,6 +18,7 @@ onBeforeMount(() => {
     <div>
         <p>{{ savedData.playerName }} | Mode : {{ game.value.modeDefinition() }}</p>
         <p>Niveau : {{ game.value.level.currentLevel }}</p>
+
     </div>
     <CardGrid />
 </template>

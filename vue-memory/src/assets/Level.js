@@ -10,11 +10,10 @@ class Level{
         this.playDeck = []
         this.cardArray = []
         this.cardUnCovered = []
-        this.levelCleared = false
     }
 
     calcSuccessRate(){
-        return 100-(this.turnCounter - this.bestPossibleScore) / this.turnCounter*100
+        return 100-(this.turnCounter - this.calcBestPossibleScore()) / this.turnCounter*100
     }
 
     calcBestPossibleScore(){
@@ -64,7 +63,9 @@ class Level{
             // si paire il y a, le score est incrémenté
             this.score++
         }
-        this.levelCleared = this.checkIfLevelCleared()
+        if(this.checkIfLevelCleared()){
+            this.relaunch()
+        }
     }
 
     checkIfLevelCleared(){

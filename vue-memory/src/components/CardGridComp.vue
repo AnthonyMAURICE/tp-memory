@@ -16,7 +16,6 @@ import { game } from '../assets/store.js'
 <style scoped>
     section{
         width: 90%;
-        max-width: 1120px;
         display: flex;
         flex-flow: row wrap;
         margin: auto;
@@ -27,8 +26,10 @@ import { game } from '../assets/store.js'
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
     img, .card-invisible{
+        border-radius: 10px;
         width: 150px;
         height: 150px;
         margin: 10px;

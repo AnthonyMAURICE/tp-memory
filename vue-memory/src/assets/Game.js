@@ -26,6 +26,23 @@ class Game{
         }
     }
 
+    // fonction qui retourne le mode choisi, pour l'afficher sur l'interface utilisateur
+    modeDefinition(){
+        let definition = ''
+        switch(this.mode){
+            case 'memory':
+                definition ='Test de mémoire'
+                break;
+            case 'relearning':
+                definition = 'Réapprentissage'
+                break;
+            default:
+                definition = 'Something went wrong'
+                break;
+        }
+        return definition
+    }
+
     downloadResults(){
         console.log('placeholder')
     }

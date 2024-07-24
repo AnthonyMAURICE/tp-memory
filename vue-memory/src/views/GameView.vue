@@ -16,11 +16,15 @@ onBeforeMount(() => {
 
 
 <template>
-    <p>{{ savedData.playerName }}</p>
-    <p>Tours de jeu : {{ game.value.level.turnCounter }} | Score : {{ game.value.level.score }}</p>
+    <div>
+        <p>{{ savedData.playerName }} | Mode : {{ game.value.modeDefinition() }}</p>
+        <p>Niveau : {{ game.value.level.currentLevel }} | Tours de jeu : {{ game.value.level.turnCounter }} | Score de ce niveau : {{ game.value.level.score }}</p>
+    </div>
     <CardGrid />
 </template>
 
 <style scoped>
-
+div{
+    margin: 15px;
+}
 </style>

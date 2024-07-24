@@ -1,26 +1,24 @@
 class Level{
     constructor(_theme){
         this.theme = _theme
+        this.currentLevel = 0
         this.turnCounter = 0
         this.clickCounter = 0
         this.levelTimer = 0
-        this.bestPossibleScore = 0
         this.score = 0
-        this.successRate = 0
         this.cards = []
         this.playDeck = []
-        this.secondDeck = []
         this.cardArray = []
         this.cardUnCovered = []
         this.levelCleared = false
     }
 
     calcSuccessRate(){
-        this.successRate = 100-(this.turnCounter - this.bestPossibleScore) / this.turnCounter*100
+        return 100-(this.turnCounter - this.bestPossibleScore) / this.turnCounter*100
     }
 
     calcBestPossibleScore(){
-        this.bestPossibleScore = this.cards.length
+        return this.cards.length
     }
 
     // fonction qui gère le click sur les cartes
@@ -70,16 +68,11 @@ class Level{
 
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire
     checkCards(_cardArray){
-        // le split() et le join() servent à déterminer s'il y a égalité entre les deux valeurs (le second deck ayant un "s" accolé à son id)
+        // le split() et le join() servent à pouvoir déterminer s'il y a égalité entre les deux valeurs (le second deck ayant un "s" accolé à son id)
         let first = _cardArray[0].split('s').join('')
         let second = _cardArray[1].split('s').join('')
-        if(first == second){
-            return true
-        }else{
-            return false
-        }
+        return first == second
     }
 
 }
-
 export default Level

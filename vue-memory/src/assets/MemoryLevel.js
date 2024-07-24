@@ -5,8 +5,6 @@ import Card from "./Card.js"
 class MemoryLevel extends Level{
     constructor(_theme){
         super()
-        this.theme = _theme
-        this.currentLevel = 0
         this.timeOutNewLevel = 0
         this.timeInterval = null
         this.maxLevel = 6
@@ -15,10 +13,6 @@ class MemoryLevel extends Level{
 
     calcTimeoutNewLevel(){
         this.timeOutNewLevel = this.currentLevel == 6 ? 1000 * 60 * 20 : 20000
-    }
-    
-    getCards(){
-        return this.cards
     }
 
     // fonction de construction des decks de jeu
@@ -34,10 +28,6 @@ class MemoryLevel extends Level{
         this.constructPlayDeck(this.playDeck)
         // le second aussi (this.secondDeck)
         this.constructSecondDeck()
-        // puis le second deck est incorporé dans le deck de jeu
-        this.secondDeck.forEach(elem => {
-            this.playDeck.push(elem)
-        })
         // qui est mélangé une seconde fois
         this.shuffleArray(this.playDeck)
     }
@@ -49,11 +39,11 @@ class MemoryLevel extends Level{
         }
     }
 
-    // création de nouveaux objets cartes, avec un id commençant par 's' pour les différencier, et intégrés au tableau this.secondDeck
+    // création de nouveaux objets cartes, avec un id commençant par 's' pour les différencier, et intégrés au tableau this.playDeck
     constructSecondDeck(){
         this.playDeck.forEach(elem=>{
             let secondCard = new Card(`s${elem.id}`, elem.name)
-            this.secondDeck.push(secondCard)
+            this.playDeck.push(secondCard)
         })
     }
 
@@ -67,5 +57,4 @@ class MemoryLevel extends Level{
         }
     }
 }
-
 export default MemoryLevel

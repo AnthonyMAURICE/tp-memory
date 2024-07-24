@@ -32,7 +32,7 @@ class MemoryLevel extends Level{
         this.shuffleArray(this.cards)
         // le premier deck est construit (this.playDeck)
         this.constructPlayDeck(this.playDeck)
-        // le second aussi
+        // le second aussi (this.secondDeck)
         this.constructSecondDeck()
         // puis le second deck est incorporé dans le deck de jeu
         this.secondDeck.forEach(elem => {

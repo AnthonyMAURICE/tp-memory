@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
 import { game } from '../assets/store.js'
 import CardGrid from '../components/CardGridComp.vue'
 import Game from '@/assets/Game.js';
@@ -16,7 +16,8 @@ onBeforeMount(() => {
 
 
 <template>
-    <h1>Placeholder</h1>
+    <p>{{ savedData.playerName }}</p>
+    <p>Tours de jeu : {{ game.value.level.turnCounter }} | Score : {{ game.value.level.score }}</p>
     <CardGrid />
 </template>
 

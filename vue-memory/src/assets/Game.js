@@ -14,6 +14,7 @@ class Game{
         this.level = null
     }
 
+    // fonction qui créé un nouveau niveau, selon le choix de l'utilisateur, puis appele la fonction de création du deck de cartes
     launchGame(){
         if(!this.isFinished){
             this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)

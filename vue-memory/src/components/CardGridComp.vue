@@ -16,9 +16,15 @@ import { game } from '../assets/store.js'
 <style scoped>
     section{
         width: 90%;
+        max-width: 1120px;
         display: flex;
         flex-flow: row wrap;
         margin: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    div{
+        display: flex;
         justify-content: center;
         align-items: center;
     }

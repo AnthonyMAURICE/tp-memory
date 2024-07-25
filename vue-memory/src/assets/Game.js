@@ -2,6 +2,8 @@ import MemoryLevel from "./MemoryLevel.js"
 import RelearningLevel from "./RelearningLevel.js"
 import { game } from '../assets/store.js'
 
+
+
 class Game{
     constructor(_chosenTheme, _chosenMode, _playerName){
         this.theme = _chosenTheme

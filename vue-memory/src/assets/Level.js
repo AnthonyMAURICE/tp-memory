@@ -13,11 +13,11 @@ class Level{
     }
 
     calcSuccessRate(){
-        return 100-(this.turnCounter - this.calcBestPossibleScore()) / this.turnCounter*100
+        return Math.round(100-(this.turnCounter - this.calcBestPossibleScore()) / this.turnCounter*100)
     }
 
     calcBestPossibleScore(){
-        return this.cards.length
+        return this.playDeck.length / 2
     }
 
     // fonction qui gère le click sur les cartes

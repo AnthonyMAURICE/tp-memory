@@ -61,6 +61,7 @@ class MemoryLevel extends Level{
         if(this.checkIfLevelCleared()){
             setTimeout(() =>{
                 this.playDeck.forEach((elem) => elem.isVisible = false)
+                this.turnCounter = 0
                 this.currentLevel++
                 this.score = 0
                 this.levelCleared = false

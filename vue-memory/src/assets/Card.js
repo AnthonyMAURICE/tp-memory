@@ -1,4 +1,10 @@
 class Card{
+
+    /**
+     * 
+     * @param {Int} _id         identifiant de la carte
+     * @param {String} _name    nom de la carte
+     */
     constructor(_id, _name){
         this.id = _id
         this.name = _name

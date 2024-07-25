@@ -5,6 +5,14 @@ import { game } from '../assets/store.js'
 
 
 class Game{
+
+    /**
+     * 
+     * @param {String} _chosenTheme  thème pour les cartes
+     * @param {String} _chosenMode   mode de jeu choisi
+     * @param {String} _playerName   nom du joueur
+     */
+
     constructor(_chosenTheme, _chosenMode, _playerName){
         this.theme = _chosenTheme
         this.mode = _chosenMode

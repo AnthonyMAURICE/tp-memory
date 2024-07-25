@@ -1,30 +1,27 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { game } from '../assets/store.js'
 import CardGrid from '../components/CardGridComp.vue'
 import Game from '@/assets/Game.js';
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
-const currentGame = new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName)
-const timerStart = ref(null)
+const currentGame = ref(new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName))
 
 onBeforeMount(() => {
     game.value = currentGame
     
-    currentGame.launchGame()
+    currentGame.value.launchGame()
 })
 
-    
 </script>
 
 
 <template>
     <div>
-        <p>{{ savedData.playerName }} | Mode : {{ game.value.modeDefinition() }} | Score de ce niveau : {{ game.value.level.score }}</p>
-        <p>Niveau : {{ game.value.level.currentLevel }}</p>
-
+        <p>{{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
+        <p>Niveau : {{ currentGame.level.currentLevel }}</p>
     </div>
-    <CardGrid />
+    <CardGrid :currentGame="currentGame"/>
 </template>
 
 <style scoped>

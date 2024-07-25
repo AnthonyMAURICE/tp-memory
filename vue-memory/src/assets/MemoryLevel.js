@@ -3,7 +3,8 @@ import result from "./fetchData.js"
 import Card from "./Card.js"
 
 class MemoryLevel extends Level{
-    constructor(_theme){
+
+    constructor(){
         super()
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null

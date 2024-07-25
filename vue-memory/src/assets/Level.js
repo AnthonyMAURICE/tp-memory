@@ -1,4 +1,7 @@
 class Level{
+    /**
+     * @param {String} _theme thème du jeu
+     */
     constructor(_theme){
         this.theme = _theme
         this.currentLevel = 0
@@ -11,6 +14,7 @@ class Level{
         this.cardArray = []
         this.cardUnCovered = []
     }
+
 
     calcSuccessRate(){
         return Math.round(100-(this.turnCounter - this.calcBestPossibleScore()) / this.turnCounter*100)
@@ -61,7 +65,7 @@ class Level{
             })
         }else{
             // si paire il y a, le score est incrémenté
-            this.score++
+            this.score += 1
         }
         if(this.checkIfLevelCleared()){
             this.relaunch()

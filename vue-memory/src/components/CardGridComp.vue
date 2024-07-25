@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue';
-import { game } from '../assets/store.js'
+
 import LevelResult from '../components/LevelResultComp.vue'
+const props = defineProps(['currentGame'])
 
 </script>
 
 
 <template>
-    <section v-if="!game.value.level.checkIfLevelCleared()">
-        <div v-for="elem in game.value.level.playDeck">
-            <img :data-id="elem.id" v-if="elem.isVisible" :src="`../src/assets/theme/${game.value.theme}/${elem.name}`">
-            <div :data-id="elem.id" class="card-invisible" @click="game.value.level.clickedImg" v-else>Carte</div> 
+    <section v-if="!props.currentGame.level.checkIfLevelCleared()">
+        <div v-for="elem in props.currentGame.level.playDeck">
+            <img :data-id="elem.id" v-if="elem.isVisible" :src="`../src/assets/theme/${props.currentGame.theme}/${elem.name}`">
+            <div :data-id="elem.id" class="card-invisible" @click="props.currentGame.level.clickedImg" v-else>Carte</div> 
         </div>
     </section>
     <section v-else>

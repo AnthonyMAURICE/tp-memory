@@ -1,6 +1,5 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import { game } from '../assets/store.js'
 import CardGrid from '../components/CardGridComp.vue'
 import Game from '@/assets/Game.js';
 
@@ -8,8 +7,6 @@ const savedData = JSON.parse(sessionStorage.gameInfo)
 const currentGame = ref(new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName))
 
 onBeforeMount(() => {
-    game.value = currentGame
-    
     currentGame.value.launchGame()
 })
 

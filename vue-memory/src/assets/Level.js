@@ -15,7 +15,6 @@ class Level{
         this.cardUnCovered = []
     }
 
-
     calcSuccessRate(){
         return Math.round(100-(this.turnCounter - this.calcBestPossibleScore()) / this.turnCounter*100)
     }
@@ -25,7 +24,7 @@ class Level{
     }
 
     // fonction qui gère le click sur les cartes
-    clickedImg(_event){
+    clickEvent(_event){
         // card Array stocke les id de la carte à l'origine du click, pour chaque tour
         this.cardArray.push(_event.target.dataset.id)
         // boucle forEach sur le deck entier
@@ -41,7 +40,7 @@ class Level{
             // condition si le tour en est à sa deuxième phase
             if(this.clickCounter == 2){
                 //appel de la fonction de seconde phase de tour, quand la seconde carte est découverte
-                this.turnSecondPhase()
+                this.secondClick()
                 //réinitialisation des tableaux pour un nouveau tour
                 this.cardArray = []
                 this.cardUnCovered = []
@@ -49,7 +48,7 @@ class Level{
         })
     }
 
-    turnSecondPhase(){
+    secondClick(){
         // le nombre de tours est incrémenté
         this.turnCounter++
         // le compteur de clicks est réinitialisé
@@ -65,7 +64,7 @@ class Level{
             })
         }else{
             // si paire il y a, le score est incrémenté
-            this.score += 1
+            this.score++
         }
         if(this.checkIfLevelCleared()){
             this.relaunch()

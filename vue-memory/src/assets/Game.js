@@ -1,8 +1,5 @@
 import MemoryLevel from "./MemoryLevel.js"
 import RelearningLevel from "./RelearningLevel.js"
-import { game } from '../assets/store.js'
-
-
 
 class Game{
 
@@ -29,7 +26,6 @@ class Game{
         if(!this.isFinished){
             this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)
             this.level.currentLevel++
-            game.value.level = this.level
             this.level.constructBaseDeck()
         }else{ 
             console.log('Terminé')

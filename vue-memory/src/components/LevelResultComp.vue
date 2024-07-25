@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onUnmounted } from 'vue';
-import { game } from '../assets/store.js'
 
-const timer = ref(Math.round(game.value.level.calcTimeoutNewLevel()/1000))
+const props = defineProps(['currentGame'])
+
+const timer = ref(Math.round(props.currentGame.level.calcTimeoutNewLevel()/1000))
 
 let timerId = setInterval(() => {
     timer.value -= 1
@@ -16,7 +17,11 @@ onUnmounted(() => {
 
 
 <template>
-    <p>Tours de jeu : {{ game.value.level.turnCounter }} | Meilleur score possible : {{ game.value.level.calcBestPossibleScore() }} | Score de ce niveau : {{ game.value.level.calcSuccessRate() }}%</p>
+    <p>
+        Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
+        Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
+        Score de ce niveau : {{ props.currentGame.level.calcSuccessRate() }}%
+    </p>
     <p> | Prochain niveau dans : {{ timer }}</p>
 </template>
 

@@ -10,11 +10,11 @@ const props = defineProps(['currentGame'])
     <section v-if="!props.currentGame.level.checkIfLevelCleared()">
         <div v-for="elem in props.currentGame.level.playDeck">
             <img :data-id="elem.id" v-if="elem.isVisible" :src="`../src/assets/theme/${props.currentGame.theme}/${elem.name}`">
-            <div :data-id="elem.id" class="card-invisible" @click="props.currentGame.level.clickedImg" v-else>Carte</div> 
+            <div :data-id="elem.id" class="card-invisible" @click="props.currentGame.level.clickEvent" v-else>Carte</div> 
         </div>
     </section>
     <section v-else>
-        <LevelResult />
+        <LevelResult :currentGame="currentGame"/>
     </section>
 </template>
 
@@ -31,7 +31,7 @@ const props = defineProps(['currentGame'])
         display: flex;
         justify-content: center;
         align-items: center;
-        
+        cursor: pointer;
     }
     img, .card-invisible{
         border-radius: 10px;

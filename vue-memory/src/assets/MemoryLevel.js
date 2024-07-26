@@ -42,8 +42,7 @@ class MemoryLevel extends Level{
     // création de nouveaux objets cartes à partir de ceux de this.playDeck, avec un id commençant par 's' pour les différencier, et intégrés à ce même tableau
     constructSecondDeck(){
         this.playDeck.forEach(elem=>{
-            let secondCard = new Card(`s${elem.id}`, elem.name)
-            this.playDeck.push(secondCard)
+            this.playDeck.push(new Card(`s${elem.id}`, elem.name))
         })
     }
 

@@ -34,11 +34,13 @@ const props = defineProps(['currentGame'])
         cursor: pointer;
     }
     img, .card-invisible{
+        
         border-radius: 10px;
         width: 150px;
         height: 150px;
         margin: 10px;
         border: 1px solid var(--color2);
     }
+
 
 </style>

@@ -10,6 +10,8 @@ onBeforeMount(() => {
     currentGame.value.launchGame()
 })
 
+
+
 </script>
 
 
@@ -18,7 +20,7 @@ onBeforeMount(() => {
         <p>{{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
         <p>Niveau : {{ currentGame.level.currentLevel }}</p>
     </div>
-    <CardGrid :currentGame="currentGame"/>
+    <card-grid :currentGame="currentGame" />
 </template>
 
 <style scoped>

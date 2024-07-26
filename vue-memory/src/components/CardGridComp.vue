@@ -14,7 +14,7 @@ const props = defineProps(['currentGame'])
         </div>
     </section>
     <section v-else>
-        <LevelResult :currentGame="currentGame"/>
+        <level-result :currentGame="currentGame"/>
     </section>
 </template>
 

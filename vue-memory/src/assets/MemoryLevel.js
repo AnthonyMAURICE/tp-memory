@@ -20,8 +20,7 @@ class MemoryLevel extends Level{
     constructBaseDeck(){
         // d'abord, les objets créés, d'après les éléments extraits du fichier json, sont intégrés à un tableau
         result.forEach(element => {
-            let card = new Card(element.id, element.name)
-            this.cards.push(card)
+            this.cards.push(new Card(element.id, element.name))
         });
         // celui-ci est mélangé une première fois
         this.shuffleArray(this.cards)

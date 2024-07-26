@@ -58,7 +58,7 @@ class Level{
             // boucle foreach sur le tableau de cartes retournées
             this.cardUnCovered.forEach(elem =>{
                 setTimeout(() => {
-                    // pas de paires, chaque élément redevient invisible après une demie seconde
+                    // pas de paires, chaque élément redevient invisible après 1/2 seconde
                     elem.isVisible = false;
                 }, 500);
             })

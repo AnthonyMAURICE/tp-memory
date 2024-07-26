@@ -27,20 +27,20 @@ class MemoryLevel extends Level{
         this.shuffleArray(this.cards)
         // le premier deck est construit (this.playDeck)
         this.constructPlayDeck(this.playDeck)
-        // le second aussi (this.secondDeck)
+        // le second aussi
         this.constructSecondDeck()
         // qui est mélangé une seconde fois
         this.shuffleArray(this.playDeck)
     }
 
-    // construction du premier deck à partir du tableau de cartes complet
+    // construction du premier deck à partir du tableau de cartes complet 
     constructPlayDeck(_deck){
         for(let i = 0; i < this.maxDeckSize; i++){
             _deck.push(this.cards[i])
         }
     }
 
-    // création de nouveaux objets cartes, avec un id commençant par 's' pour les différencier, et intégrés au tableau this.playDeck
+    // création de nouveaux objets cartes à partir de ceux de this.playDeck, avec un id commençant par 's' pour les différencier, et intégrés à ce même tableau
     constructSecondDeck(){
         this.playDeck.forEach(elem=>{
             let secondCard = new Card(`s${elem.id}`, elem.name)

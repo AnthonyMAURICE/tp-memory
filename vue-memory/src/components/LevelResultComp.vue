@@ -20,7 +20,7 @@ onUnmounted(() => {
     <p>
         Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
         Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
-        Score de ce niveau : {{ props.currentGame.level.calcSuccessRate() }}%
+        Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}%
     </p>
     <p> | Prochain niveau dans : {{ timer }}</p>
 </template>

@@ -1,3 +1,5 @@
+import CardContainer from "./CardContainer"
+
 class Level{
     /**
      * @param {String} _theme thème du jeu
@@ -9,9 +11,8 @@ class Level{
         this.clickCounter = 0
         this.levelTimer = 0
         this.score = 0
-        this.cards = []
-        this.playDeck = []
-        this.cardArray = []
+        this.cards = new CardContainer()
+        this.idArray = []
         this.cardUnCovered = []
     }
 
@@ -20,15 +21,15 @@ class Level{
     }
 
     calcBestPossibleScore(){
-        return this.playDeck.length / 2
+        return this.cards.playDeck.length / 2
     }
 
-    // fonction qui gère le click sur les cartes
+    // fonction qui gère les clicks sur les cartes
     clickEvent(_event){
         // card Array stocke les id de la carte à l'origine du click, pour chaque tour
-        this.cardArray.push(_event.target.dataset.id)
+        this.idArray.push(_event.target.dataset.id)
         // boucle forEach sur le deck entier
-        this.playDeck.forEach(elem => {
+        this.cards.playDeck.forEach(elem => {
             // si id d'origine correspond à celui de l'objet carte
             if(_event.target.dataset.id == elem.id){
                 // celle-ci devient visible
@@ -42,19 +43,20 @@ class Level{
                 //appel de la fonction de seconde phase de tour, quand la seconde carte est découverte
                 this.secondClick()
                 //réinitialisation des tableaux pour un nouveau tour
-                this.cardArray = []
+                this.idArray = []
                 this.cardUnCovered = []
             }
         })
     }
 
+    // fonction gérant le second click, avec appel de la fonction checkant les égalités ou non
     secondClick(){
         // le nombre de tours est incrémenté
         this.turnCounter++
         // le compteur de clicks est réinitialisé
         this.clickCounter = 0
         // condition pour déterminer s'il n'y a pas paire
-        if(!this.checkCards(this.cardArray)){
+        if(!this.checkCards(this.idArray)){
             // boucle foreach sur le tableau de cartes retournées
             this.cardUnCovered.forEach(elem =>{
                 setTimeout(() => {
@@ -72,16 +74,16 @@ class Level{
     }
 
     checkIfLevelCleared(){
-        let test = this.score == this.playDeck.length/2
+        let test = this.score == this.cards.playDeck.length/2
         return test
     }
 
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire
-    checkCards(_cardArray){
-        // le split() et le join() servent à pouvoir déterminer s'il y a égalité entre les deux valeurs (le second deck ayant un "s" accolé à son id)
-        let first = _cardArray[0].split('s').join('')
-        let second = _cardArray[1].split('s').join('')
-        return first == second
+    checkCards(_idArray){
+        // le split() et le join() servent à pouvoir déterminer s'il y a égalité entre les deux valeurs (les "doubles" ayant un "s" accolé à leur id)
+        let first = _idArray[0].split('s').join('')
+        let second = _idArray[1].split('s').join('')
+        return first === second
     }
 
 }

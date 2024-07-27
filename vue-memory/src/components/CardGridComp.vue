@@ -2,14 +2,14 @@
 
 import LevelResult from '../components/LevelResultComp.vue'
 const props = defineProps(['currentGame'])
-
+const urlFirstPart = '../src/assets/theme'
 </script>
 
 
 <template>
     <section v-if="!props.currentGame.level.checkIfLevelCleared()">
-        <div v-for="elem in props.currentGame.level.playDeck">
-            <img :data-id="elem.id" v-if="elem.isVisible" :src="`../src/assets/theme/${props.currentGame.theme}/${elem.name}`">
+        <div v-for="elem in props.currentGame.level.cards.playDeck">
+            <img :data-id="elem.id" v-if="elem.isVisible" :src="`${urlFirstPart}/${props.currentGame.theme}/${elem.name}`">
             <div :data-id="elem.id" class="card-invisible" @click="props.currentGame.level.clickEvent" v-else>Carte</div> 
         </div>
     </section>

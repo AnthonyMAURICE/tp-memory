@@ -31,14 +31,12 @@ function inGameTimer(){
 function stopTimer(){
     currentGame.value.level.paused = true
     currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
-    console.log(currentGame.value.successRates)
     clearInterval(levelTimer.value)
 }
 
 function resetTimer(){
     clearInterval(levelTimer.value)
     currentGame.value.totalTime += timer.value
-    console.log(currentGame.value.totalTime)
     timer.value = 0
 }
 </script>

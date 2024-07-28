@@ -17,7 +17,8 @@ class Game{
         this.startDateTime = Date.now()
         this.isFinished = false
         this.totalTime = 0
-        this.succesRate = 0
+        this.successRates = []
+        this.totalSuccesRate = 0
         this.level = null
     }
 

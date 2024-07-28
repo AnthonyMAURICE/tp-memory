@@ -18,12 +18,12 @@ class MemoryLevel extends Level{
 
     // fonction de construction des decks de jeu
     constructBaseDeck(){
-        // d'abord, les objets créés, d'après les éléments extraits du fichier json, sont intégrés à un tableau
+        // d'abord, les objets créés d'après les éléments extraits du fichier json sont intégrés à un tableau
         result.forEach(element => {
             this.cards.globalContainer.push(new Card(element.id, element.name))
         });
         // celui-ci est mélangé une première fois
-        this.cards.shuffleArray(this.cards.playDeck)
+        this.cards.shuffleArray(this.cards.globalContainer)
         // le premier deck est construit (this.playDeck)
         this.constructPlayDeck(this.cards.playDeck)
         // le second aussi
@@ -45,8 +45,6 @@ class MemoryLevel extends Level{
             this.cards.playDeck.push(new Card(`s${elem.id}`, elem.name))
         })
     }
-
-    
 
     relaunch(){
         if(this.checkIfLevelCleared()){

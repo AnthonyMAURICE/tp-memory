@@ -10,6 +10,7 @@ class Level{
         this.turnCounter = 0
         this.clickCounter = 0
         this.levelTimer = 0
+        this.paused = true
         this.score = 0
         this.cards = new CardContainer()
         this.idArray = []
@@ -26,6 +27,7 @@ class Level{
 
     // fonction qui gère les clicks sur les cartes
     clickEvent(_event){
+        //this.paused = false
         // card Array stocke les id de la carte à l'origine du click, pour chaque tour
         this.idArray.push(_event.target.dataset.id)
         // boucle forEach sur le deck entier

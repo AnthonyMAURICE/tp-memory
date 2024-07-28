@@ -11,6 +11,9 @@ const props = defineProps(['state'])
 
 
 <style scoped>
-
+button{
+    width: 90px;
+    border-radius: 10px;
+}
 
 </style>

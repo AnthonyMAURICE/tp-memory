@@ -75,10 +75,5 @@ function validateName(){
     width: 50%;
     padding: 5px;
   }
-  button{
-    background-color: var(--color3);
-    border: none;
-    padding: 10px;
-    margin: 5px 0;
-  }
+  
 </style>

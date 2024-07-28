@@ -44,9 +44,10 @@ function resetTimer(){
 <template>
     <div v-if="!currentGame.level.checkIfLevelCleared()">
         <div class="stats">
-            <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }} | Timer : {{ timer }}</p>
-            <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
+            <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
             <p>Niveau : {{ currentGame.level.currentLevel }}</p>
+            <p>Timer : {{ timer }}</p>
+            <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
         </div>
         <div >
             <card-grid :timer="timer" :currentGame="currentGame" @level-timer="inGameTimer"/>
@@ -60,7 +61,12 @@ function resetTimer(){
 <style scoped>
 .stats{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     margin: 15px;
+}
+
+p{
+    margin: 0 25px;
 }
 </style>

@@ -20,3 +20,10 @@ body{
   font-size: 1.6rem;
   font-family: 'Courier New', Courier, monospace;
 }
+
+button{
+  background-color: var(--color3);
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+}

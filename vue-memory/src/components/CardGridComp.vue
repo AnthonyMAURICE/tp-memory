@@ -1,8 +1,8 @@
 <script setup>
-
+import CardComp from './CardComp.vue';
 const emit = defineEmits(['levelTimer', 'levelFinished'])
 const props = defineProps(['currentGame', 'timer'])
-const urlFirstPart = '../src/assets/theme'
+
 
 function emitUnpause(_level){
     if(_level.paused){
@@ -16,7 +16,7 @@ function emitUnpause(_level){
 <template>
     <section :class="[props.currentGame.level.maxDeckSize > 20 ? 'big-section' : 'small-section']">
         <div @click="emitUnpause(props.currentGame.level)" v-for="elem in props.currentGame.level.cards.playDeck">
-            <img v-if="elem.isVisible" :data-id="elem.id" :class="[props.currentGame.level.maxDeckSize > 20 ? 'small-cards' : 'big-cards']" :src="`${urlFirstPart}/${props.currentGame.theme}/${elem.name}`">
+            <card-comp v-if="elem.isVisible" :current-game="currentGame" :card="elem"/>
             <div v-else :data-id="elem.id" :class="[props.currentGame.level.maxDeckSize > 20 ? 'small-cards' : 'big-cards']" @click="props.currentGame.level.clickEvent">Carte</div> 
         </div>
     </section>
@@ -59,6 +59,5 @@ function emitUnpause(_level){
         width: 150px;
         height: 150px;
     }
-
 
 </style>

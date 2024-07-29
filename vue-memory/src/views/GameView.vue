@@ -32,7 +32,6 @@ function stopTimer(){
     if(currentGame.value.level.checkIfLevelCleared()){
         currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
     }
-    console.log(currentGame.value.successRates)
     clearInterval(levelTimer.value)
 }
 

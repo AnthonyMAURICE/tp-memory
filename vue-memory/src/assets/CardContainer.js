@@ -1,6 +1,3 @@
-import Card from "./Card.js";
-
-
 
 export default class CardContainer{
     constructor(){

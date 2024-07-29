@@ -25,8 +25,7 @@ class Game{
     // fonction qui créé un nouveau niveau, selon le choix de l'utilisateur, puis appele la fonction de création du deck de cartes
     launchGame(){
         if(!this.isFinished){
-            this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)
-            this.level.currentLevel++
+            this.level = this.mode == 'memory' ? new MemoryLevel(this.theme, this.mode) : new RelearningLevel(this.theme, this.mode)
             this.level.constructBaseDeck()
         }else{ 
             console.log('Terminé')

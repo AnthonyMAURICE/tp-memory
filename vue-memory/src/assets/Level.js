@@ -1,12 +1,16 @@
 import CardContainer from "./CardContainer"
-
+import result from "./fetchData.js"
+import Card from "./Card.js"
+import Game from "./Game"
 class Level{
     /**
      * @param {String} _theme thème du jeu
+     * @param {String} _mode mode de jeu
      */
-    constructor(_theme){
+    constructor(_theme, _mode){
         this.theme = _theme
-        this.currentLevel = 0
+        this.mode = _mode
+        this.currentLevel = 1
         this.turnCounter = 0
         this.clickCounter = 0
         this.levelTimer = 0
@@ -75,6 +79,53 @@ class Level{
         }
     }
 
+    // fonction de construction des decks de jeu
+    constructBaseDeck(){
+        // réinitialisation du deck de jeu
+        this.cards.playDeck = []
+        // les objets créés d'après les éléments extraits du fichier json sont intégrés à un tableau
+        result.forEach(element => {
+            this.cards.globalContainer.push(new Card(element.id, element.name))
+        });
+        // celui-ci est mélangé une première fois
+        this.cards.shuffleArray(this.cards.globalContainer)
+        // le premier deck est construit (this.playDeck)
+        this.constructPlayDeck(this.cards.playDeck)
+        // le second aussi
+        this.constructSecondDeck()
+        // qui est mélangé une seconde fois
+        this.cards.shuffleArray(this.cards.playDeck)
+    }
+
+    // construction du premier deck à partir du tableau de cartes complet 
+    constructPlayDeck(_deck){
+        for(let i = 0; i < this.calcDeckSize(); i++){
+            _deck.push(this.cards.globalContainer[i])
+        }
+    }
+    // création de nouveaux objets cartes à partir de ceux de this.playDeck, avec un id commençant par 's' pour les différencier, et intégrés à ce même tableau
+    constructSecondDeck(){
+        this.cards.playDeck.forEach(elem=>{
+            this.cards.playDeck.push(new Card(`s${elem.id}`, elem.name))
+        })
+    }
+
+    relaunch(){
+        if(this.checkIfLevelCleared()){
+            setTimeout(() =>{
+                this.cards.playDeck.forEach((elem) => elem.isVisible = false)
+                this.turnCounter = 0
+                this.currentLevel++
+                this.score = 0
+                // si le mode de jeu est le réapprentissage, un nouveau deck sera construit
+                if(this.mode === 'relearning'){
+                    this.cards.globalContainer = []
+                    this.constructBaseDeck()
+                }
+            }, this.calcTimeoutNewLevel())
+        }
+    }
+
     checkIfLevelCleared(){
         let test = this.score == this.cards.playDeck.length/2
         return test
@@ -83,9 +134,7 @@ class Level{
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire
     checkCards(_idArray){
         // le split() et le join() servent à pouvoir déterminer s'il y a égalité entre les deux valeurs (les "doubles" ayant un "s" accolé à leur id)
-        let first = _idArray[0].split('s').join('')
-        let second = _idArray[1].split('s').join('')
-        return first === second
+        return _idArray[0].split('s').join('') === _idArray[1].split('s').join('')
     }
 
 }

@@ -50,14 +50,12 @@ class RelearningLevel extends Level{
                 this.cards.playDeck.forEach((elem) => elem.isVisible = false)
                 this.turnCounter = 0
                 this.currentLevel++
-                this.constructBaseDeck()
                 this.score = 0
+                this.cards.globalContainer = []
+                this.constructBaseDeck()
             }, this.calcTimeoutNewLevel())
-            
         }
     }
-    
-
 }
 
 export default RelearningLevel

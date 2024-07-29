@@ -4,6 +4,7 @@ import CardGrid from '../components/CardGridComp.vue'
 import LevelResult from '../components/LevelResultComp.vue'
 import Game from '@/assets/Game.js';
 import TimerButtonComp from '@/components/TimerButtonComp.vue';
+import ResetButton from '@/components/ResetButtonComp.vue';
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
 const currentGame = ref(new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName))
@@ -37,8 +38,15 @@ function stopTimer(){
 
 function resetTimer(){
     clearInterval(levelTimer.value)
-    currentGame.value.timesArray.push(timer.value)
+    if(currentGame.value.level.checkIfLevelCleared()){
+        currentGame.value.timesArray.push(timer.value)
+    }
     timer.value = 0
+}
+
+function resetGame(){
+    resetTimer()
+    currentGame.value.launchGame()
 }
 </script>
 
@@ -49,6 +57,7 @@ function resetTimer(){
             <p>Niveau : {{ currentGame.level.currentLevel }}</p>
             <p>Timer : {{ timer }}</p>
             <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
+            <reset-button @reset-event="resetGame"/>
         </div>
         <div >
             <card-grid :timer="timer" :currentGame="currentGame" @level-timer="inGameTimer"/>
@@ -62,7 +71,7 @@ function resetTimer(){
 <style scoped>
 .stats{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin: 15px;
 }

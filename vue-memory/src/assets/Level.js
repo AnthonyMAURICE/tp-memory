@@ -31,7 +31,6 @@ class Level{
 
     // fonction qui gère les clicks sur les cartes
     clickEvent(_event){
-        //this.paused = false
         // card Array stocke les id de la carte à l'origine du click, pour chaque tour
         this.idArray.push(_event.target.dataset.id)
         // boucle forEach sur le deck entier
@@ -118,6 +117,7 @@ class Level{
                 this.currentLevel++
                 this.score = 0
                 // si le mode de jeu est le réapprentissage, un nouveau deck sera construit
+                console.log(this.mode)
                 if(this.mode === 'relearning'){
                     this.cards.globalContainer = []
                     this.constructBaseDeck()

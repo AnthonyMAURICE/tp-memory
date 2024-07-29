@@ -22,14 +22,19 @@ class Game{
         this.level = null
     }
 
+    
     // fonction qui créé un nouveau niveau, selon le choix de l'utilisateur, puis appele la fonction de création du deck de cartes
     launchGame(){
         if(!this.isFinished){
-            this.level = this.mode == 'memory' ? new MemoryLevel(this.theme, this.mode) : new RelearningLevel(this.theme, this.mode)
-            this.level.constructBaseDeck()
+            this.level = this.mode == 'memory' ? new MemoryLevel() : new RelearningLevel()
+            this.level.cards.constructBaseDeck(this.calcDeckSize())
         }else{ 
             console.log('Terminé')
         }
+    }
+
+    calcDeckSize(){
+        return this.level.calcDeckSize()
     }
 
     // fonction qui retourne le mode choisi, pour l'afficher sur l'interface utilisateur
@@ -52,7 +57,6 @@ class Game{
     downloadResults(){
         console.log('placeholder')
     }
-
 }
 
 export default Game

@@ -52,7 +52,7 @@ class RelearningLevel extends Level{
                 this.currentLevel++
                 this.score = 0
                 this.cards.globalContainer = []
-                this.constructBaseDeck()
+                this.cards.constructBaseDeck(this.calcDeckSize())
             }, this.calcTimeoutNewLevel())
         }
     }

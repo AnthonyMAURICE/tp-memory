@@ -7,11 +7,11 @@ class MemoryLevel extends Level{
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null
         this.maxLevel = 6
-        this.maxDeckSize = 12
+        this.maxDeckSize = this.calcDeckSize()
     }
 
     calcDeckSize(){
-        return this.maxDeckSize
+        return 12
     }
 
     calcTimeoutNewLevel(){

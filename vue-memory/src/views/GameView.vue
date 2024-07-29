@@ -46,6 +46,8 @@ function resetTimer(){
 
 function resetGame(){
     resetTimer()
+    currentGame.value.timesArray = []
+    currentGame.successRates = []
     currentGame.value.launchGame()
 }
 </script>

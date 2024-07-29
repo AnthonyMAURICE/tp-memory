@@ -22,21 +22,23 @@ function inGameTimer(){
         stateOfGame.value = 'Pause'
         levelTimer.value = setInterval(function(){timer.value++}, 1000)
     }else{
-        currentGame.value.level.paused = true
-        stateOfGame.value = 'Reprendre'
-        clearInterval(levelTimer.value)
+        stopTimer()
     }
 }
 
 function stopTimer(){
     currentGame.value.level.paused = true
-    currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
+    stateOfGame.value = 'Reprendre'
+    if(currentGame.value.level.checkIfLevelCleared()){
+        currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
+    }
+    console.log(currentGame.value.successRates)
     clearInterval(levelTimer.value)
 }
 
 function resetTimer(){
     clearInterval(levelTimer.value)
-    currentGame.value.totalTime += timer.value
+    currentGame.value.timesArray.push(timer.value)
     timer.value = 0
 }
 </script>

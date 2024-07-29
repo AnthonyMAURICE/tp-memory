@@ -10,7 +10,7 @@ import { RouterView } from 'vue-router'
 <style scoped>
 h1{
   font-weight: normal;
-  margin: 15px;
+  margin: 10px 15px;
   font-size: 5rem;
 }
 </style>

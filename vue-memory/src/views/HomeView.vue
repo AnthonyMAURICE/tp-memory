@@ -6,6 +6,7 @@ const router = useRouter()
 const name = ref('')
 const theme = ref('colors')
 const mode = ref('memory')
+const date = ref(new Date(Date.now()).toLocaleString())
 
 function pushTo(route) { 
   if(validateName()){
@@ -17,7 +18,7 @@ function pushTo(route) {
 }
 
 function saveInSessionStorage(){
-  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
+  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value, date: date}
   sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
 }
 
@@ -56,7 +57,7 @@ function validateName(){
 
 <style scoped>
   form{
-    width: 50%;
+    width: 33%;
     margin: 15px;
     font-size: 2rem;
   }
@@ -72,8 +73,13 @@ function validateName(){
     margin: 5px 0;
   }
   select, input{
-    width: 50%;
     padding: 5px;
+  }
+  select{
+    width: 33%;
+  } 
+  input{
+    width: 50%;
   }
   
 </style>

@@ -14,23 +14,21 @@ class Game{
         this.theme = _chosenTheme
         this.mode = _chosenMode
         this.playerName = _playerName
-        this.startDateTime = Date.now()
         this.isFinished = false
         this.timesArray = []
         this.successRates = []
-        this.totalSuccesRate = 0
         this.level = null
     }
 
+    
     // fonction qui créé un nouveau niveau, selon le choix de l'utilisateur, puis appele la fonction de création du deck de cartes
     launchGame(){
-        if(!this.isFinished){
-            this.level = this.mode == 'memory' ? new MemoryLevel(this.theme) : new RelearningLevel(this.theme)
-            this.level.currentLevel++
-            this.level.constructBaseDeck()
-        }else{ 
-            console.log('Terminé')
-        }
+        this.level = this.mode == 'memory' ? new MemoryLevel() : new RelearningLevel()
+        this.level.cards.constructBaseDeck(this.calcDeckSize())
+    }
+
+    calcDeckSize(){
+        return this.level.calcDeckSize()
     }
 
     // fonction qui retourne le mode choisi, pour l'afficher sur l'interface utilisateur
@@ -53,7 +51,6 @@ class Game{
     downloadResults(){
         console.log('placeholder')
     }
-
 }
 
 export default Game

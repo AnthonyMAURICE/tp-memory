@@ -1,17 +1,14 @@
 import CardContainer from "./CardContainer"
-
 class Level{
-    /**
-     * @param {String} _theme thème du jeu
-     */
-    constructor(_theme){
-        this.theme = _theme
-        this.currentLevel = 0
+
+    constructor(){
+        this.currentLevel = 1
         this.turnCounter = 0
         this.clickCounter = 0
         this.levelTimer = 0
         this.paused = true
         this.score = 0
+        this.finished = false
         this.cards = new CardContainer()
         this.idArray = []
         this.cardUnCovered = []
@@ -27,7 +24,6 @@ class Level{
 
     // fonction qui gère les clicks sur les cartes
     clickEvent(_event){
-        //this.paused = false
         // card Array stocke les id de la carte à l'origine du click, pour chaque tour
         this.idArray.push(_event.target.dataset.id)
         // boucle forEach sur le deck entier
@@ -83,9 +79,7 @@ class Level{
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire
     checkCards(_idArray){
         // le split() et le join() servent à pouvoir déterminer s'il y a égalité entre les deux valeurs (les "doubles" ayant un "s" accolé à leur id)
-        let first = _idArray[0].split('s').join('')
-        let second = _idArray[1].split('s').join('')
-        return first === second
+        return _idArray[0].split('s').join('') === _idArray[1].split('s').join('')
     }
 
 }

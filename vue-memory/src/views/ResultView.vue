@@ -3,12 +3,11 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
-
-let iterator = localStorage.getItem('nbLevels')
 const router = useRouter()
-
 const time = ref(0)
 const success = ref(0)
+
+let iterator = localStorage.getItem('nbLevels')
 
 function backHome(){
     sessionStorage.clear()
@@ -41,7 +40,7 @@ function formatSuccess(){
         <p>Date et heure de début de l'épreuve : {{ savedData.date }}</p>
         <p>Temps total : {{ formatTime() }}</p>
         <p>Taux de succès moyen : {{ formatSuccess() }}%</p>
-        <button type="button" @click="backHome">Revenir au début</button>
+        <button type="button" @click="backHome">Revenir à la page d'accueil</button>
     </div>
 </template>
 

@@ -6,6 +6,7 @@ const router = useRouter()
 const name = ref('')
 const theme = ref('colors')
 const mode = ref('memory')
+const date = ref(new Date(Date.now()).toLocaleString())
 
 function pushTo(route) { 
   if(validateName()){
@@ -17,7 +18,7 @@ function pushTo(route) {
 }
 
 function saveInSessionStorage(){
-  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value}
+  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value, date: date}
   sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
 }
 

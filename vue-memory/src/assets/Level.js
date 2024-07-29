@@ -8,6 +8,7 @@ class Level{
         this.levelTimer = 0
         this.paused = true
         this.score = 0
+        this.finished = false
         this.cards = new CardContainer()
         this.idArray = []
         this.cardUnCovered = []
@@ -69,21 +70,6 @@ class Level{
             this.relaunch()
         }
     }
-
-    // launchNewLevel(_mode){
-    //     if(this.checkIfLevelCleared()){
-    //         setTimeout(() =>{
-    //             this.cards.playDeck.forEach((elem) => elem.isVisible = false)
-    //             this.turnCounter = 0
-    //             this.currentLevel++
-    //             this.score = 0
-    //             if(_mode == 'relearning'){
-    //                 this.cards.globalContainer = []
-    //                 this.constructBaseDeck()
-    //             }
-    //         }, this.calcTimeoutNewLevel())
-    //     }
-    // }
 
     checkIfLevelCleared(){
         let test = this.score == this.cards.playDeck.length/2

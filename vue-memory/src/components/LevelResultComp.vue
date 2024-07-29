@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onUnmounted, onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router'
 
 const props = defineProps(['currentGame', 'timer'])
 const emit = defineEmits(['stopTimer', 'resetTimer'])
-
+const router = useRouter()
 const nextLevelTimer = ref(Math.round(props.currentGame.level.calcTimeoutNewLevel()/1000))
 
 let timerId = setInterval(() => {
@@ -11,7 +12,12 @@ let timerId = setInterval(() => {
 }, 1000);
 
 onBeforeMount(()=> {
-    emit('stopTimer')
+    if(props.currentGame.level.finished){
+        router.push({ path: '/resultats' })
+    }else{
+        emit('stopTimer')
+    }
+    
 })
 
 onUnmounted(() => {

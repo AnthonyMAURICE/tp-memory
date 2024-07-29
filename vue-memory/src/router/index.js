@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/memory',
       name: 'memory',
       component: () => import('../views/GameView.vue')
+    },
+    {
+      path: '/resultats',
+      name: 'resultats',
+      component: () => import('@/views/ResultView.vue')
     }
   ]
 })

@@ -1,30 +1,74 @@
 <script setup>
-import { onBeforeMount } from 'vue';
-import { game } from '../assets/store.js'
+import { onBeforeMount, ref } from 'vue';
 import CardGrid from '../components/CardGridComp.vue'
+import LevelResult from '../components/LevelResultComp.vue'
 import Game from '@/assets/Game.js';
+import TimerButtonComp from '@/components/TimerButtonComp.vue';
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
-const currentGame = new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName)
+const currentGame = ref(new Game(savedData.gameTheme, savedData.gameMode, savedData.playerName))
 
 onBeforeMount(() => {
-    game.value = currentGame
-    currentGame.launchGame()
+    currentGame.value.launchGame()
 })
 
+const stateOfGame = ref('Commencer')
+const levelTimer = ref(null)
+const timer = ref(0)
+
+function inGameTimer(){
+    if(currentGame.value.level.paused){
+        currentGame.value.level.paused = false
+        stateOfGame.value = 'Pause'
+        levelTimer.value = setInterval(function(){timer.value++}, 1000)
+    }else{
+        stopTimer()
+    }
+}
+
+function stopTimer(){
+    currentGame.value.level.paused = true
+    stateOfGame.value = 'Reprendre'
+    if(currentGame.value.level.checkIfLevelCleared()){
+        currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
+    }
+    console.log(currentGame.value.successRates)
+    clearInterval(levelTimer.value)
+}
+
+function resetTimer(){
+    clearInterval(levelTimer.value)
+    currentGame.value.timesArray.push(timer.value)
+    timer.value = 0
+}
 </script>
 
-
 <template>
-    <div>
-        <p>{{ savedData.playerName }} | Mode : {{ game.value.modeDefinition() }}</p>
-        <p>Niveau : {{ game.value.level.currentLevel }} | Tours de jeu : {{ game.value.level.turnCounter }} | Score de ce niveau : {{ game.value.level.score }}</p>
+    <div v-if="!currentGame.level.checkIfLevelCleared()">
+        <div class="stats">
+            <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
+            <p>Niveau : {{ currentGame.level.currentLevel }}</p>
+            <p>Timer : {{ timer }}</p>
+            <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
+        </div>
+        <div >
+            <card-grid :timer="timer" :currentGame="currentGame" @level-timer="inGameTimer"/>
+        </div>
     </div>
-    <CardGrid />
+    <div v-else>
+        <level-result @stop-timer="stopTimer" @reset-timer="resetTimer" :timer="timer" :currentGame="currentGame"/>
+    </div>
 </template>
 
 <style scoped>
-div{
+.stats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 15px;
+}
+
+p{
+    margin: 0 25px;
 }
 </style>

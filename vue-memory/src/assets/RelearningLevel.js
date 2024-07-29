@@ -1,9 +1,8 @@
 import Level from "./Level"
 
 class RelearningLevel extends Level{
-    constructor(_theme){
+    constructor(){
         super()
-        this.theme = _theme
         this.currentLevel = 0
         this.timeOutNewLevel = 20000
         this.timeInterval = null

@@ -2,6 +2,8 @@
 import { useRouter } from 'vue-router'
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
+const finalData = JSON.parse(localStorage.getItem('finalInfos'))
+console.log(finalData)
 const router = useRouter()
 
 function backHome(){
@@ -9,16 +11,13 @@ function backHome(){
     router.push({path: '/'})
 }
 
-// const totalTime = computed(() =>{
-    
-// })
 
 </script>
 
 <template>
     <div>
         <p>Nom : {{ savedData.playerName }}</p>
-        <p>Date : {{ savedData.date }}</p>
+        <p>Date et heure de début de l'épreuve : {{ savedData.date }}</p>
         <button type="button" @click="backHome">Revenir au début</button>
     </div>
 </template>

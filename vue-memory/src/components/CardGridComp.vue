@@ -3,7 +3,6 @@ import CardComp from './CardComp.vue';
 const emit = defineEmits(['levelTimer', 'levelFinished'])
 const props = defineProps(['currentGame', 'timer'])
 
-
 function emitUnpause(_level){
     if(_level.paused){
         emit('levelTimer')

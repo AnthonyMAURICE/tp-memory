@@ -71,9 +71,13 @@ class Level{
         }
     }
 
+    storeResults(){
+        localStorage.setItem(`time${this.currentLevel}`, this.levelTimer)
+        localStorage.setItem(`sucess${this.currentLevel}`, this.calcSuccessRate())
+    }
+
     checkIfLevelCleared(){
-        let test = this.score == this.cards.playDeck.length/2
-        return test
+        return this.score == this.cards.playDeck.length/2
     }
 
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire

@@ -19,6 +19,7 @@ class MemoryLevel extends Level{
     }
 
     relaunch(){
+        this.storeResults()
         if(this.checkIfLevelCleared() && this.currentLevel < this.maxLevel){
             setTimeout(() =>{
                 this.cards.playDeck.forEach((elem) => elem.isVisible = false)

@@ -71,9 +71,10 @@ class Level{
         }
     }
 
-    storeResults(){
+    storeResults(_maxLevel){
+        localStorage.nbLevels = _maxLevel
         localStorage.setItem(`time${this.currentLevel}`, this.levelTimer)
-        localStorage.setItem(`sucess${this.currentLevel}`, this.calcSuccessRate())
+        localStorage.setItem(`success${this.currentLevel}`, this.calcSuccessRate())
     }
 
     checkIfLevelCleared(){

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onUnmounted, onBeforeMount, isProxy, toRaw } from 'vue';
+import { ref, onUnmounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router'
 
 const props = defineProps(['currentGame', 'timer'])

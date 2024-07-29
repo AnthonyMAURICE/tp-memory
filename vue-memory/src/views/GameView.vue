@@ -71,9 +71,9 @@ function resetGame(){
 <style scoped>
 .stats{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    margin: 15px;
+    margin: 10px;
 }
 
 p{

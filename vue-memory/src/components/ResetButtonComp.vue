@@ -9,8 +9,5 @@
 
 
 <style scoped>
-button{
-    border-radius: 10px;
-}
 
 </style>

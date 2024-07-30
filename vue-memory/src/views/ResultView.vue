@@ -1,7 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import Format from '@/assets/Format';
-import Results from '@/assets/Results';
 import DownloadData from '@/assets/DownloadData';
 
 const router = useRouter()
@@ -17,7 +16,12 @@ function backHome(){
 }
 
 function save(){
-    const save = new Results(savedData.playerName, savedData.date, results.formatTime(finalTime, true), results.formatSuccess(finalSuccesses))
+    const save = {
+        name: savedData.playerName,
+        date: savedData.date,
+        totalTime : results.formatTime(finalTime, true),
+        successRate: results.formatSuccess(finalSuccesses)
+    }
     const dataToDownload = new DownloadData('save.csv', save)
     dataToDownload.download()
 }
@@ -27,7 +31,7 @@ function save(){
 <template>
     <div>
         <p>Nom : {{ savedData.playerName }}</p>
-        <p>Date et heure de début de la partie : {{ savedData.date }}</p>
+        <p>Date et heure de début : {{ savedData.date }}</p>
         <p>Temps total : {{ results.formatTime(finalTime, true) }}</p>
         <p>Taux de succès moyen : {{ results.formatSuccess(finalSuccesses) }}%</p>
         <button type="button" @click="backHome">Revenir à la page d'accueil</button>
@@ -36,5 +40,11 @@ function save(){
 </template>
 
 <style scoped>
-
+div{
+    margin: 15px;
+}
+button{
+    cursor: pointer;
+    margin-left: 0;
+}
 </style>

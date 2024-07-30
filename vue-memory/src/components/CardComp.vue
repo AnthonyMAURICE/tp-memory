@@ -17,5 +17,8 @@
     display: flex;
     flex-flow: column;
 }
+p{
+    font-size: 1.5rem;
+}
 
 </style>

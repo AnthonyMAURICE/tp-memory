@@ -34,7 +34,7 @@ onUnmounted(() => {
             Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
             Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
             Temps passé : {{ props.timer }} |
-            Prochain niveau dans : {{ results.formatTime(nextLevelTimer, false) }}
+            Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ results.formatTime(nextLevelTimer, false) }}</span>
         </p>
     </div>
 </template>

@@ -2,17 +2,17 @@ import { json2csv } from 'json-2-csv';
 
 export default class DownloadData{
     /**
-     * @param {string} _filename 
-     * @param {string} _file 
+     * @param {string} _filename nom du fichier qui sera créé
+     * @param {string} _file corps du fichier, un json à l'origine
      */
     constructor(_filename, _file){
         this.filename = _filename
         this.file = _file
         this.options = {
             delimiter : {
-                wrap  : '\'', // Single Quote (') character
-                field : ';', // Tab field delimiter
-                eol   : '\n' // Newline delimiter
+                wrap  : '\'', 
+                field : ';', 
+                eol   : '\n' 
             },
         };
     }

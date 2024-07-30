@@ -26,7 +26,6 @@ onUnmounted(() => {
 
 </script>
 
-
 <template>
     <div>
         <p>

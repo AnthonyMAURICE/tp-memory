@@ -47,7 +47,7 @@ function finalSave(){
 <template>
     <div>
         <p>Nom : {{ savedData.playerName }}</p>
-        <p>Date et heure de début de l'épreuve : {{ savedData.date }}</p>
+        <p>Date et heure de début de la partie : {{ savedData.date }}</p>
         <p>Temps total : {{ results.formatTime(finalTime, true) }}</p>
         <p>Taux de succès moyen : {{ results.formatSuccess(finalSuccesses) }}%</p>
         <button type="button" @click="backHome">Revenir à la page d'accueil</button>

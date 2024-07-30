@@ -29,3 +29,20 @@ button{
   padding: 10px;
   margin: 5px 10px;
 }
+
+
+.small-cards{
+  border-radius: 10px;
+  width: 115px;
+  height: 115px;
+  margin: 10px;
+  border: 1px solid var(--color2);
+}
+
+.big-cards{
+border-radius: 10px;
+margin: 10px;
+border: 1px solid var(--color2);
+width: 150px;
+height: 150px;
+}

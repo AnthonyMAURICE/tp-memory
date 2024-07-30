@@ -27,6 +27,7 @@ function inGameTimer(){
 }
 
 function stopTimer(){
+    console.log('test')
     currentGame.value.level.paused = true
     stateOfGame.value = 'Reprendre'
     clearInterval(levelTimer.value)
@@ -45,23 +46,30 @@ function resetGame(){
     currentGame.successRates = []
     currentGame.value.launchGame()
 }
+
+function getTime(){
+    stopTimer()
+    return currentGame.value.level.levelTimer
+}
+
+
 </script>
 
 <template>
-    <div v-if="!currentGame.level.checkIfLevelCleared()">
-        <div class="stats">
+    <div>
+        <div v-if="!currentGame.level.checkIfLevelCleared()" class="stats">
             <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
             <p>Niveau : {{ currentGame.level.currentLevel }}</p>
             <p>Timer : {{ currentGame.level.levelTimer }}</p>
             <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
             <reset-button @reset-event="resetGame"/>
         </div>
+        <div v-else>
+            <level-result  v-if="currentGame.level.checkIfLevelCleared()" @reset-timer="resetTimer" :timer="getTime()" :currentGame="currentGame"/>
+        </div>
         <div >
             <card-grid :timer="currentGame.level.levelTimer" :currentGame="currentGame" @level-timer="inGameTimer"/>
         </div>
-    </div>
-    <div v-else>
-        <level-result @stop-timer="stopTimer" @reset-timer="resetTimer" :timer="currentGame.level.levelTimer" :currentGame="currentGame"/>
     </div>
 </template>
 

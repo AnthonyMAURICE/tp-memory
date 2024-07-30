@@ -36,6 +36,7 @@ class Level{
                 // et elle est "poussée" dans this.cardUncovered pour plus tard déterminer s'il y a paire ou non
                 this.cardUnCovered.push(elem)
                 this.clickCounter++
+                elem.clickCounter++
             }
             // condition si le tour en est à sa deuxième phase
             if(this.clickCounter == 2){

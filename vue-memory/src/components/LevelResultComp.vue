@@ -16,10 +16,7 @@ let timerId = setInterval(() => {
 onBeforeMount(()=> {
     if(props.currentGame.level.finished){
         router.push({ path: '/resultats' })
-    }else{
-        emit('stopTimer')
     }
-    
 })
 
 onUnmounted(() => {
@@ -36,14 +33,14 @@ onUnmounted(() => {
             Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
             Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
             Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
-            Temps passé : {{ props.timer }}
+            Temps passé : {{ props.timer }} |
+            Prochain niveau dans : {{ results.formatTime(nextLevelTimer, false) }}
         </p>
-    </div>
-    <div>
-        <p>Prochain niveau dans : {{ results.formatTime(nextLevelTimer) }}</p>
     </div>
 </template>
 
 <style scoped>
-
+p{
+    text-align: center;
+}
 </style>

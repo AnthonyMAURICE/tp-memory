@@ -5,7 +5,7 @@ class RelearningLevel extends Level{
         super()
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null
-        this.maxLevel = 7
+        this.maxLevel = 2
         this.maxDeckSize = this.calcDeckSize()
     }
     
@@ -45,6 +45,7 @@ class RelearningLevel extends Level{
     }
 
     relaunch(){
+        this.storeResults(this.maxLevel)
         if(this.checkIfLevelCleared() && this.currentLevel < this.maxLevel){
             setTimeout(() =>{
                 this.cards.playDeck.forEach((elem) => elem.isVisible = false)

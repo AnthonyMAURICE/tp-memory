@@ -1,4 +1,5 @@
 import CardContainer from "./CardContainer"
+import JsonSave from "./JsonSave"
 class Level{
 
     constructor(){
@@ -71,9 +72,18 @@ class Level{
         }
     }
 
+    /**
+     * 
+     * @param {*} _maxLevel nombre de niveaux du mode de jeu
+     */
+    storeResults(_maxLevel){
+        localStorage.nbeLevels = _maxLevel
+        const save = new JsonSave(this.levelTimer, this.calcSuccessRate())
+        localStorage.levelsSave = save.createSaveArray(save.save)
+    }
+
     checkIfLevelCleared(){
-        let test = this.score == this.cards.playDeck.length/2
-        return test
+        return this.score == this.cards.playDeck.length/2
     }
 
     //fonction de contrôle sur les id des cartes, pour vérifier s'il y a paire

@@ -15,13 +15,12 @@ onBeforeMount(() => {
 
 const stateOfGame = ref('Commencer')
 const levelTimer = ref(null)
-const timer = ref(0)
 
 function inGameTimer(){
     if(currentGame.value.level.paused){
         currentGame.value.level.paused = false
         stateOfGame.value = 'Pause'
-        levelTimer.value = setInterval(function(){timer.value++}, 1000)
+        levelTimer.value = setInterval(function(){currentGame.value.level.levelTimer++}, 1000)
     }else{
         stopTimer()
     }
@@ -39,9 +38,9 @@ function stopTimer(){
 function resetTimer(){
     clearInterval(levelTimer.value)
     if(currentGame.value.level.checkIfLevelCleared()){
-        currentGame.value.timesArray.push(timer.value)
+        currentGame.value.timesArray.push(currentGame.value.level.levelTimer)
     }
-    timer.value = 0
+    currentGame.value.level.levelTimer = 0
 }
 
 function resetGame(){
@@ -57,16 +56,16 @@ function resetGame(){
         <div class="stats">
             <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
             <p>Niveau : {{ currentGame.level.currentLevel }}</p>
-            <p>Timer : {{ timer }}</p>
+            <p>Timer : {{ currentGame.level.levelTimer }}</p>
             <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
             <reset-button @reset-event="resetGame"/>
         </div>
         <div >
-            <card-grid :timer="timer" :currentGame="currentGame" @level-timer="inGameTimer"/>
+            <card-grid :timer="currentGame.level.levelTimer" :currentGame="currentGame" @level-timer="inGameTimer"/>
         </div>
     </div>
     <div v-else>
-        <level-result @stop-timer="stopTimer" @reset-timer="resetTimer" :timer="timer" :currentGame="currentGame"/>
+        <level-result @stop-timer="stopTimer" @reset-timer="resetTimer" :timer="currentGame.level.levelTimer" :currentGame="currentGame"/>
     </div>
 </template>
 

@@ -18,7 +18,7 @@ function pushTo(route) {
 }
 
 function saveInSessionStorage(){
-  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value, date: date}
+  const gameInfoSave = {playerName: name.value, gameTheme: theme.value, gameMode: mode.value, date: date.value}
   sessionStorage.setItem('gameInfo', JSON.stringify(gameInfoSave))
 }
 
@@ -58,6 +58,7 @@ function validateName(){
 <style scoped>
   form{
     width: 33%;
+    min-width: 450px;
     margin: 15px;
     font-size: 2rem;
   }

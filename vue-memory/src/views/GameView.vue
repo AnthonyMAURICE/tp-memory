@@ -27,7 +27,6 @@ function inGameTimer(){
 }
 
 function stopTimer(){
-    console.log('test')
     currentGame.value.level.paused = true
     stateOfGame.value = 'Reprendre'
     clearInterval(levelTimer.value)

@@ -12,15 +12,6 @@ export default class Card{
         this.isVisible = false
     }
 
-    get id(){
-        return this.id
-    }
-
-    get name(){
-        return this.name
-    }
-
-
     clickOnCard(){
         this.clickCounter++
     }

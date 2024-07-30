@@ -7,7 +7,7 @@ const props = defineProps(['currentGame', 'timer'])
 const emit = defineEmits(['stopTimer', 'resetTimer'])
 const router = useRouter()
 const nextLevelTimer = ref(Math.round(props.currentGame.level.calcTimeoutNewLevel()/1000))
-const results = new Format()
+const format = new Format()
 
 let timerId = setInterval(() => {
     nextLevelTimer.value--
@@ -33,7 +33,7 @@ onUnmounted(() => {
             Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
             Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
             Temps passé : {{ props.timer }} |
-            Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ results.formatTime(nextLevelTimer, false) }}</span>
+            Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ format.formatTime(nextLevelTimer, false) }}</span>
         </p>
     </div>
 </template>

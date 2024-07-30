@@ -1,6 +1,6 @@
 import Level from "./Level"
 
-class RelearningLevel extends Level{
+export default class RelearningLevel extends Level{
     constructor(){
         super()
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
@@ -60,5 +60,3 @@ class RelearningLevel extends Level{
         }
     }
 }
-
-export default RelearningLevel

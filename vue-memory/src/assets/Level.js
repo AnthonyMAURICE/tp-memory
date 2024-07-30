@@ -1,6 +1,6 @@
 import CardContainer from "./CardContainer"
 import JsonSave from "./JsonSave"
-class Level{
+export default class Level{
 
     constructor(){
         this.currentLevel = 1
@@ -94,4 +94,3 @@ class Level{
     }
 
 }
-export default Level

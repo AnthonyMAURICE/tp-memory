@@ -3,7 +3,7 @@ import { json2csv } from 'json-2-csv';
 export default class DownloadData{
     /**
      * @param {string} _filename nom du fichier qui sera créé
-     * @param {string} _file corps du fichier, un json à l'origine
+     * @param {string} _file corps du fichier, un json pour ce cas précis
      */
     constructor(_filename, _file){
         this.filename = _filename
@@ -17,6 +17,7 @@ export default class DownloadData{
         };
     }
 
+    // fonction qui gère le téléchargement du fichier final en .csv
     download() {
         let element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json2csv(this.file, this.options)));

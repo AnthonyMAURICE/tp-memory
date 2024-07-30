@@ -1,6 +1,6 @@
 import Level from './Level.js'
 
-class MemoryLevel extends Level{
+export default class MemoryLevel extends Level{
 
     constructor(){
         super()
@@ -34,4 +34,3 @@ class MemoryLevel extends Level{
         }
     }
 }
-export default MemoryLevel

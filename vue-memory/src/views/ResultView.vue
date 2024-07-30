@@ -1,37 +1,34 @@
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 
 const savedData = JSON.parse(sessionStorage.gameInfo)
 const router = useRouter()
-const time = ref(0)
-const success = ref(0)
+let finalTime = 0
+let finalSuccesses = 0
 
-let iterator = localStorage.getItem('nbLevels')
+const resultArray = getStorageElem()
 
 function backHome(){
     sessionStorage.clear()
+    localStorage.clear()
     router.push({path: '/'})
 }
 
-function getStorageElem(_elementToGet, _elementToReturn){
-    for(let i = 1; i <= iterator; i++){
-        _elementToReturn += parseInt(localStorage.getItem(`${_elementToGet}${i}`))
-    }
-    return _elementToReturn
+function getStorageElem(){
+    return JSON.parse(localStorage.levelsSave)
 }
 
 function formatTime(){
-    let finalTime = getStorageElem('time', time.value)
+    resultArray.forEach(elem => finalTime += elem.time)
     const minutes = Math.floor(finalTime / 60);
     const seconds = finalTime - minutes * 60;
     return minutes > 0 ? `${minutes} minutes et ${seconds} secondes` : `${seconds} secondes`
 }
 
 function formatSuccess(){
-    return (getStorageElem('success', success.value)/iterator)
+    resultArray.forEach(elem => finalSuccesses += elem.success)
+    return (finalSuccesses/parseInt(localStorage.getItem('nbeLevels')))
 }
-
 </script>
 
 <template>

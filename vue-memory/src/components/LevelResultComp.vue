@@ -20,6 +20,12 @@ onBeforeMount(()=> {
     
 })
 
+function formatTime(){
+    const minutes = Math.floor(nextLevelTimer.value / 60);
+    const seconds = nextLevelTimer.value - minutes * 60;
+    return minutes > 0 ? `${minutes} minutes et ${seconds} secondes` : `${seconds} secondes`
+}
+
 onUnmounted(() => {
     clearInterval(timerId);
     emit('resetTimer')
@@ -38,7 +44,7 @@ onUnmounted(() => {
         </p>
     </div>
     <div>
-        <p>Prochain niveau dans : {{ nextLevelTimer }}</p>
+        <p>Prochain niveau dans : {{ formatTime() }}</p>
     </div>
 </template>
 

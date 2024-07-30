@@ -1,4 +1,5 @@
 import CardContainer from "./CardContainer"
+import JsonSave from "./JsonSave"
 class Level{
 
     constructor(){
@@ -71,10 +72,14 @@ class Level{
         }
     }
 
+    /**
+     * 
+     * @param {*} _maxLevel nombre de niveaux du mode de jeu
+     */
     storeResults(_maxLevel){
-        localStorage.nbLevels = _maxLevel
-        localStorage.setItem(`time${this.currentLevel}`, this.levelTimer)
-        localStorage.setItem(`success${this.currentLevel}`, this.calcSuccessRate())
+        localStorage.nbeLevels = _maxLevel
+        const save = new JsonSave(this.levelTimer, this.calcSuccessRate())
+        localStorage.levelsSave = save.createSaveArray(save.save)
     }
 
     checkIfLevelCleared(){

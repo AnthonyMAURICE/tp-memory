@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onUnmounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router'
+import Format from '@/assets/Format';
 
 const props = defineProps(['currentGame', 'timer'])
 const emit = defineEmits(['stopTimer', 'resetTimer'])
 const router = useRouter()
 const nextLevelTimer = ref(Math.round(props.currentGame.level.calcTimeoutNewLevel()/1000))
+const results = new Format()
 
 let timerId = setInterval(() => {
     nextLevelTimer.value--
@@ -19,12 +21,6 @@ onBeforeMount(()=> {
     }
     
 })
-
-function formatTime(){
-    const minutes = Math.floor(nextLevelTimer.value / 60);
-    const seconds = nextLevelTimer.value - minutes * 60;
-    return minutes > 0 ? `${minutes} minutes et ${seconds} secondes` : `${seconds} secondes`
-}
 
 onUnmounted(() => {
     clearInterval(timerId);
@@ -44,7 +40,7 @@ onUnmounted(() => {
         </p>
     </div>
     <div>
-        <p>Prochain niveau dans : {{ formatTime() }}</p>
+        <p>Prochain niveau dans : {{ results.formatTime(nextLevelTimer) }}</p>
     </div>
 </template>
 

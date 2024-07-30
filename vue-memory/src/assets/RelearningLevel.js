@@ -5,7 +5,7 @@ class RelearningLevel extends Level{
         super()
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null
-        this.maxLevel = 2
+        this.maxLevel = 7
         this.maxDeckSize = this.calcDeckSize()
     }
     

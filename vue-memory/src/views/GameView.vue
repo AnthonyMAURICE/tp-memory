@@ -29,22 +29,18 @@ function inGameTimer(){
 function stopTimer(){
     currentGame.value.level.paused = true
     stateOfGame.value = 'Reprendre'
-    if(currentGame.value.level.checkIfLevelCleared()){
-        currentGame.value.successRates.push(currentGame.value.level.calcSuccessRate())
-    }
     clearInterval(levelTimer.value)
 }
 
 function resetTimer(){
     clearInterval(levelTimer.value)
-    if(currentGame.value.level.checkIfLevelCleared()){
-        currentGame.value.timesArray.push(currentGame.value.level.levelTimer)
-    }
     currentGame.value.level.levelTimer = 0
 }
 
 function resetGame(){
     resetTimer()
+    localStorage.clear()
+    stateOfGame.value = 'Commencer'
     currentGame.value.timesArray = []
     currentGame.successRates = []
     currentGame.value.launchGame()

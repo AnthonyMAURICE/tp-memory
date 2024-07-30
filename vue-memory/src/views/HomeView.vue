@@ -57,8 +57,7 @@ function validateName(){
 
 <style scoped>
   form{
-    width: 33%;
-    min-width: 450px;
+    width: 25%;
     margin: 15px;
     font-size: 2rem;
   }
@@ -81,6 +80,10 @@ function validateName(){
   } 
   input{
     width: 50%;
+  }
+
+  button{
+    margin: 5px 0;
   }
   
 </style>

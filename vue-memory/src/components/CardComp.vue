@@ -1,6 +1,10 @@
 <script setup>
     const props = defineProps(['currentGame', 'card'])
     const urlFirstPart = '../src/assets/theme'
+
+    
+// Computed pour l'url de la carte
+
 </script>
 
 <template>

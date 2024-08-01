@@ -15,19 +15,14 @@ export default class MemoryLevel extends Level{
     }
 
     calcTimeoutNewLevel(){
-        return this.currentLevel == 6 ? 1000 * 60 * 20 : 20000
+        return this.currentLevel == 2 ? 1000 * 60 * 20 : 2000
     }
 
     relaunch(){
         this.storeResults(this.maxLevel)
         if(this.checkIfLevelCleared() && this.currentLevel < this.maxLevel){
             setTimeout(() =>{
-                this.cards.playDeck.forEach((elem) => {
-                    elem.clickCounter = 0
-                    elem.isVisible = false})
-                this.turnCounter = 0
-                this.currentLevel++
-                this.score = 0
+                this.newLevel()
             }, this.calcTimeoutNewLevel())
         }else{
             this.finished = true

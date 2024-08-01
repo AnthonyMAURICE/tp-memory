@@ -48,10 +48,7 @@ export default class RelearningLevel extends Level{
         this.storeResults(this.maxLevel)
         if(this.checkIfLevelCleared() && this.currentLevel < this.maxLevel){
             setTimeout(() =>{
-                this.cards.playDeck.forEach((elem) => elem.isVisible = false)
-                this.turnCounter = 0
-                this.currentLevel++
-                this.score = 0
+                this.newLevel()
                 this.cards.globalContainer = []
                 this.cards.constructBaseDeck(this.calcDeckSize())
             }, this.calcTimeoutNewLevel())

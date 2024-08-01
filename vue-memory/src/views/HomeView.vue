@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import TitleComp from '@/components/TitleComp.vue';
 
 const router = useRouter()
 const name = ref('')
@@ -29,39 +30,47 @@ function validateName(){
 </script>
 
 <template>
-  <form>
-    <div>
-      <label for="theme">Sélectionner le thème à utiliser :</label>
-      <select name="theme" id="theme" v-model="theme">
-        <option value="colors">Couleurs</option>
-        <option value="abstract">Formes abstraites</option>
-        <option value="cards">Cartes à jouer</option>
-      </select>
-    </div>
-    <div>
-      <label for="mode">Sélectionner la variante :</label>
-      <select name="mode" id="mode" v-model="mode">
-        <option value="memory">Test de mémoire</option>
-        <option value="relearning">Réapprentissage</option>
-      </select>
-    </div>
-    <div>
-      <label for="name">Saisissez votre prénom et votre nom :</label>
-      <input type="text" id="name" required v-model="name">
-    </div>
-    <div class="validation">
-        <button @click="pushTo('/memory')" type="button">Démarrer</button>
-    </div>
-  </form>
+  <div class="global-div">
+    <title-comp />
+    <form>
+      <div class="form-div">
+        <label for="theme">Sélectionner le thème à utiliser :</label>
+        <select name="theme" id="theme" v-model="theme">
+          <option value="colors">Couleurs</option>
+          <option value="abstract">Formes abstraites</option>
+          <option value="cards">Cartes à jouer</option>
+        </select>
+      </div>
+      <div class="form-div">
+        <label for="mode">Sélectionner la variante :</label>
+        <select name="mode" id="mode" v-model="mode">
+          <option value="memory">Test de mémoire</option>
+          <option value="relearning">Réapprentissage</option>
+        </select>
+      </div>
+      <div class="form-div">
+        <label for="name">Saisissez votre prénom et votre nom :</label>
+        <input type="text" id="name" required v-model="name">
+      </div>
+      <div class="form-div validation">
+          <button @click="pushTo('/memory')" type="button">Démarrer</button>
+      </div>
+    </form>
+  </div>
+  
 </template>
 
 <style scoped>
+  .global-div{
+    padding: 2px 10px;
+    margin: 0 55px;
+  }
   form{
-    width: 25%;
+    width: 30%;
     margin: 15px;
     font-size: 2rem;
   }
-  div{
+  .form-div{
     display: flex;
     flex-direction: column;
     margin: 5px 0;

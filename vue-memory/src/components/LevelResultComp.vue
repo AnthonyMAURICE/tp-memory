@@ -53,7 +53,6 @@ onUnmounted(() => {
     margin: 10px;
 }
 p{
-    margin: 20px;
     text-align: center;
 }
 </style>

@@ -93,4 +93,10 @@ export default class Level{
         return _idArray[0].split('s').join('') === _idArray[1].split('s').join('')
     }
 
+    newLevel(){
+        this.cards.playDeck.forEach((elem) => elem.isVisible = false)
+        this.turnCounter = 0
+        this.currentLevel++
+        this.score = 0
+    }
 }

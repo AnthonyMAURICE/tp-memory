@@ -1,7 +1,12 @@
 <script setup>
+import { computed } from 'vue';
+
     const props = defineProps(['currentGame', 'card'])
     const urlFirstPart = '../src/assets/theme'
 
+    const src = computed(()=>{
+        return `${urlFirstPart}/${props.currentGame.theme}/${props.card.name}`
+    })
     
 // Computed pour l'url de la carte
 
@@ -9,7 +14,7 @@
 
 <template>
     <div class="cards">
-        <img :data-id="props.card.id" :class="[props.currentGame.level.maxDeckSize > 20 ? 'small-cards' : 'big-cards']" :src="`${urlFirstPart}/${props.currentGame.theme}/${props.card.name}`">
+        <img :data-id="props.card.id" :class="[props.currentGame.level.maxDeckSize > 20 ? 'small-cards' : 'big-cards']" :src="src">
         <p v-if="props.currentGame.level.checkIfLevelCleared()">Clickée {{ props.card.clickCounter }} fois</p>
     </div>
 </template>

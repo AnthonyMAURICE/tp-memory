@@ -57,9 +57,6 @@ width: 150px;
 height: 135px;
 }
 
-.title{
-  width: 20%;
-}
 .content{
   display: flex;
   align-items: center;

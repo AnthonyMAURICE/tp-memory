@@ -25,6 +25,7 @@ import { computed } from 'vue';
     flex-flow: column;
     background-color: var(--color1);
 }
+
 p{
     font-size: 1.5rem;
 }

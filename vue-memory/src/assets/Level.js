@@ -25,8 +25,9 @@ export default class Level{
 
     // fonction qui gère les clicks sur les cartes
     clickEvent(_event){
-        // card Array stocke les id de la carte à l'origine du click, pour chaque tour
+        // card Array stocke l'id de la carte à l'origine du click, pour chaque tour
         this.idArray.push(_event.target.dataset.id)
+        
         // boucle forEach sur le deck entier
         this.cards.playDeck.forEach(elem => {
             // si id d'origine correspond à celui de l'objet carte
@@ -98,5 +99,6 @@ export default class Level{
         this.turnCounter = 0
         this.currentLevel++
         this.score = 0
+
     }
 }

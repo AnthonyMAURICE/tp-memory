@@ -9,15 +9,14 @@ function emitUnpause(_level){
     }
 }
 
-
 </script>
 
 
 <template>
     <section :class="[props.currentGame.level.maxDeckSize > 20 ? 'big-section' : 'small-section']">
-        <div @click="emitUnpause(props.currentGame.level)" v-for="card in props.currentGame.level.cards.playDeck">
-            <card-comp v-if="card.isVisible"  :current-game="currentGame" :card="card"/>
-            <div v-else :data-id="card.id" :class="[props.currentGame.level.calcDeckSize() >= 16 ? 'covered small-cards' : 'covered big-cards']" @click="props.currentGame.level.clickEvent"><p :data-id="card.id"></p></div> 
+        <div @click="emitUnpause(props.currentGame.level)" class="card" v-for="card in props.currentGame.level.cards.playDeck">
+            <card-comp v-if="card.isVisible" class="card__face card__face--front"  :current-game="currentGame" :card="card"/>
+            <div v-else :data-id="card.id" :class="[props.currentGame.level.calcDeckSize() >= 16 ? 'card__face card__face--back covered small-cards' : 'card__face card__face--back covered big-cards']" @click="props.currentGame.level.clickEvent"><p :data-id="card.id"></p></div> 
         </div>
     </section>
     

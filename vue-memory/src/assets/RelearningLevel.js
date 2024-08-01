@@ -38,7 +38,7 @@ export default class RelearningLevel extends Level{
                 size = 28
                 break
             default:
-                console.log('something went wrong')
+                console.error('something went wrong')
                 break
         }
         return size

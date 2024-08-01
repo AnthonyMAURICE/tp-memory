@@ -2,6 +2,7 @@
 import { onBeforeMount, ref } from 'vue';
 import CardGrid from '../components/CardGridComp.vue'
 import LevelResult from '../components/LevelResultComp.vue'
+import TitleComp from '@/components/TitleComp.vue';
 import Game from '@/assets/Game.js';
 import TimerButtonComp from '@/components/TimerButtonComp.vue';
 import ResetButton from '@/components/ResetButtonComp.vue';
@@ -57,11 +58,16 @@ function getTime(){
 <template>
     <div>
         <div v-if="!currentGame.level.checkIfLevelCleared()" class="stats">
-            <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
-            <p>Niveau : {{ currentGame.level.currentLevel }}</p>
-            <p>Timer : {{ currentGame.level.levelTimer }}</p>
-            <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
-            <reset-button @reset-event="resetGame"/>
+            <div class="title">
+                <title-comp />
+            </div>
+            <div class="content">
+                <p>Nom : {{ savedData.playerName }} | Mode : {{ currentGame.modeDefinition() }} | Score de ce niveau : {{ currentGame.level.score }}</p>
+                <p>Niveau : {{ currentGame.level.currentLevel }}</p>
+                <p>Timer : {{ currentGame.level.levelTimer }}</p>
+                <timer-button-comp :state="stateOfGame" @timer-event="inGameTimer"/>
+                <reset-button @reset-event="resetGame"/>
+            </div>
         </div>
         <div v-else>
             <level-result  v-if="currentGame.level.checkIfLevelCleared()" @reset-timer="resetTimer" :timer="getTime()" :currentGame="currentGame"/>
@@ -75,7 +81,7 @@ function getTime(){
 <style scoped>
 .stats{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin: 10px;
 }

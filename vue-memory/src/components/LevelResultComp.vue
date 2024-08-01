@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onUnmounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router'
+import TitleComp from './TitleComp.vue';
 import Format from '@/assets/Format';
 
 const props = defineProps(['currentGame', 'timer'])
@@ -27,19 +28,32 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div>
-        <p>
-            Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
-            Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
-            Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
-            Temps passé : {{ props.timer }} |
-            Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ format.formatTime(nextLevelTimer, false) }}</span>
-        </p>
+    <div class="wrapper">
+        <div class="title">
+            <title-comp />
+        </div>
+        <div class="content">
+            <p>
+                Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
+                Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
+                Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
+                Temps passé : {{ props.timer }} |
+                Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ format.formatTime(nextLevelTimer, false) }}</span>
+            </p>
+        </div>
+        
     </div>
 </template>
 
 <style scoped>
+.wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px;
+}
 p{
+    margin: 20px;
     text-align: center;
 }
 </style>

@@ -1,11 +1,11 @@
 import Level from "./Level"
 
-class RelearningLevel extends Level{
+export default class RelearningLevel extends Level{
     constructor(){
         super()
         this.timeOutNewLevel = this.calcTimeoutNewLevel()
         this.timeInterval = null
-        this.maxLevel = 2
+        this.maxLevel = 7
         this.maxDeckSize = this.calcDeckSize()
     }
     
@@ -60,5 +60,3 @@ class RelearningLevel extends Level{
         }
     }
 }
-
-export default RelearningLevel

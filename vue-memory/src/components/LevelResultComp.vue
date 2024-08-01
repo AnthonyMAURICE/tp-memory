@@ -1,11 +1,14 @@
 <script setup>
 import { ref, onUnmounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router'
+import TitleComp from './TitleComp.vue';
+import Format from '@/assets/Format';
 
 const props = defineProps(['currentGame', 'timer'])
 const emit = defineEmits(['stopTimer', 'resetTimer'])
 const router = useRouter()
 const nextLevelTimer = ref(Math.round(props.currentGame.level.calcTimeoutNewLevel()/1000))
+const format = new Format()
 
 let timerId = setInterval(() => {
     nextLevelTimer.value--
@@ -14,17 +17,8 @@ let timerId = setInterval(() => {
 onBeforeMount(()=> {
     if(props.currentGame.level.finished){
         router.push({ path: '/resultats' })
-    }else{
-        emit('stopTimer')
     }
-    
 })
-
-function formatTime(){
-    const minutes = Math.floor(nextLevelTimer.value / 60);
-    const seconds = nextLevelTimer.value - minutes * 60;
-    return minutes > 0 ? `${minutes} minutes et ${seconds} secondes` : `${seconds} secondes`
-}
 
 onUnmounted(() => {
     clearInterval(timerId);
@@ -33,21 +27,33 @@ onUnmounted(() => {
 
 </script>
 
-
 <template>
-    <div>
-        <p>
-            Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
-            Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
-            Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
-            Temps passé : {{ props.timer }}
-        </p>
-    </div>
-    <div>
-        <p>Prochain niveau dans : {{ formatTime() }}</p>
+    <div class="wrapper">
+        <div class="title">
+            <title-comp />
+        </div>
+        <div class="content">
+            <p>
+                Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
+                Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
+                Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
+                Temps passé : {{ props.timer }} |
+                Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ format.formatTime(nextLevelTimer, false) }}</span>
+            </p>
+        </div>
+        
     </div>
 </template>
 
 <style scoped>
-
+.wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px;
+}
+p{
+    margin: 20px;
+    text-align: center;
+}
 </style>

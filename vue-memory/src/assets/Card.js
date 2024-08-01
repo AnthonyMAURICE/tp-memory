@@ -1,4 +1,4 @@
-class Card{
+export default class Card{
 
     /**
      * 
@@ -16,5 +16,3 @@ class Card{
         this.clickCounter++
     }
 }
-
-export default Card

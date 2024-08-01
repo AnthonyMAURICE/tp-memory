@@ -1,6 +1,6 @@
 import Level from './Level.js'
 
-class MemoryLevel extends Level{
+export default class MemoryLevel extends Level{
 
     constructor(){
         super()
@@ -22,7 +22,9 @@ class MemoryLevel extends Level{
         this.storeResults(this.maxLevel)
         if(this.checkIfLevelCleared() && this.currentLevel < this.maxLevel){
             setTimeout(() =>{
-                this.cards.playDeck.forEach((elem) => elem.isVisible = false)
+                this.cards.playDeck.forEach((elem) => {
+                    elem.clickCounter = 0
+                    elem.isVisible = false})
                 this.turnCounter = 0
                 this.currentLevel++
                 this.score = 0
@@ -32,4 +34,3 @@ class MemoryLevel extends Level{
         }
     }
 }
-export default MemoryLevel

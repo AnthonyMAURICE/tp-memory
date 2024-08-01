@@ -1,6 +1,6 @@
 import CardContainer from "./CardContainer"
 import JsonSave from "./JsonSave"
-class Level{
+export default class Level{
 
     constructor(){
         this.currentLevel = 1
@@ -36,6 +36,7 @@ class Level{
                 // et elle est "poussée" dans this.cardUncovered pour plus tard déterminer s'il y a paire ou non
                 this.cardUnCovered.push(elem)
                 this.clickCounter++
+                elem.clickCounter++
             }
             // condition si le tour en est à sa deuxième phase
             if(this.clickCounter == 2){
@@ -93,4 +94,3 @@ class Level{
     }
 
 }
-export default Level

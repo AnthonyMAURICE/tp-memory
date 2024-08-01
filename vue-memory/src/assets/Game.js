@@ -1,7 +1,7 @@
 import MemoryLevel from "./MemoryLevel.js"
 import RelearningLevel from "./RelearningLevel.js"
 
-class Game{
+export default class Game{
 
     /**
      * 
@@ -52,5 +52,3 @@ class Game{
         console.log('placeholder')
     }
 }
-
-export default Game

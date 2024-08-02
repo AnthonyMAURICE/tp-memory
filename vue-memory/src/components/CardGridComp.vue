@@ -52,9 +52,4 @@ function emitUnpause(_level){
         border-radius: 25px;
     }
 
-    @keyframes flip {
-        from{transform: rotateY(0deg);}
-        to{transform: rotateY(180deg);}
-    }
-
 </style>

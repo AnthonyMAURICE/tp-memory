@@ -13,7 +13,7 @@ export default class Format{
         }
         const minutes = Math.floor(finalTime / 60);
         const seconds = finalTime - minutes * 60;
-        return minutes > 0 ? `${minutes} minutes et ${seconds} secondes` : `${seconds} secondes`
+        return minutes > 0 ? `${minutes} minute(s) et ${seconds} seconde(s)` : `${seconds} seconde(s)`
     }
     
     formatSuccess(finalSuccesses){

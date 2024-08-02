@@ -37,7 +37,7 @@ onUnmounted(() => {
                 Tours de jeu : {{ props.currentGame.level.turnCounter }} | 
                 Meilleur score possible : {{ props.currentGame.level.calcBestPossibleScore() }} | 
                 Taux de réussite : {{ props.currentGame.level.calcSuccessRate() }}% |
-                Temps passé : {{ props.timer }} |
+                Temps passé : {{ format.formatTime(props.timer, false) }} |
                 Prochain niveau dans : <span :style="{color: nextLevelTimer < 10 ? 'red': 'var(--color2)'}">{{ format.formatTime(nextLevelTimer, false) }}</span>
             </p>
         </div>
